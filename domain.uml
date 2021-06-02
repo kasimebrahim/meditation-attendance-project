@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>edu.ea.project.team8.domain</OriginalElement>
+  <nodes>
+    <node x="122.47304827567575" y="220.5088642881596">edu.ea.project.team8.domain.BarCodeRecord</node>
+    <node x="299.463430635589" y="-7.312593272873386">edu.ea.project.team8.domain.Person</node>
+    <node x="1095.7810813913443" y="934.0836430837419">edu.ea.project.team8.domain.Location</node>
+    <node x="1187.5163802528532" y="162.35502409625485">edu.ea.project.team8.domain.Student</node>
+    <node x="596.4400183675812" y="1115.4359562510017">edu.ea.project.team8.domain.Registration</node>
+    <node x="609.6026862587532" y="322.1668711861412">edu.ea.project.team8.domain.ClassSession</node>
+    <node x="-298.1813798645391" y="1074.485433922911">edu.ea.project.team8.domain.Course</node>
+    <node x="-135.31557800482142" y="220.5088642881596">edu.ea.project.team8.domain.Faculty</node>
+    <node x="-24.862817127769517" y="897.520676719375">edu.ea.project.team8.domain.Timeslot</node>
+    <node x="-312.9789920789806" y="408.45547180604706">edu.ea.project.team8.domain.CourseOffering</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="edu.ea.project.team8.domain.Registration" target="edu.ea.project.team8.domain.CourseOffering" relationship="TO_ONE">
+      <point x="0.0" y="0.0" />
+      <point x="297.25" y="1176.4359562510017" />
+      <point x="297.25" y="524.4554718060471" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="edu.ea.project.team8.domain.CourseOffering" target="edu.ea.project.team8.domain.ClassSession" relationship="TO_ONE">
+      <point x="0.0" y="0.0" />
+      <point x="346.75" y="524.4554718060471" />
+      <point x="346.75" y="394.1668711861412" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="edu.ea.project.team8.domain.ClassSession" target="edu.ea.project.team8.domain.CourseOffering" relationship="TO_ONE">
+      <point x="0.0" y="0.0" />
+      <point x="346.75" y="394.1668711861412" />
+      <point x="346.75" y="524.4554718060471" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="edu.ea.project.team8.domain.CourseOffering" target="edu.ea.project.team8.domain.Registration" relationship="TO_MANY">
+      <point x="0.0" y="0.0" />
+      <point x="297.25" y="524.4554718060471" />
+      <point x="297.25" y="1176.4359562510017" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="edu.ea.project.team8.domain.Faculty" target="edu.ea.project.team8.domain.Person" relationship="GENERALIZATION">
+      <point x="0.0" y="28.0" />
+      <point x="-30.81557800482142" y="186.68584070796453" />
+      <point x="299.4629425403508" y="186.68584070796453" />
+      <point x="-78.50048809523818" y="0.0" />
+    </edge>
+    <edge source="edu.ea.project.team8.domain.BarCodeRecord" target="edu.ea.project.team8.domain.Location" relationship="TO_ONE">
+      <point x="0.0" y="0.0" />
+      <point x="521.5" y="292.5088642881596" />
+      <point x="521.5" y="995.0836430837419" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="edu.ea.project.team8.domain.ClassSession" target="edu.ea.project.team8.domain.Timeslot" relationship="TO_ONE">
+      <point x="0.0" y="0.0" />
+      <point x="332.0" y="394.1668711861412" />
+      <point x="332.0" y="969.520676719375" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="edu.ea.project.team8.domain.ClassSession" target="edu.ea.project.team8.domain.Location" relationship="TO_ONE">
+      <point x="0.0" y="0.0" />
+      <point x="697.1026862587532" y="594.4427292965763" />
+      <point x="1162.7810813913443" y="594.4427292965763" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="edu.ea.project.team8.domain.CourseOffering" target="edu.ea.project.team8.domain.Faculty" relationship="TO_ONE">
+      <point x="0.0" y="0.0" />
+      <point x="-204.97899207898058" y="394.9072053562527" />
+      <point x="-30.81557800482142" y="394.9072053562527" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="edu.ea.project.team8.domain.CourseOffering" target="edu.ea.project.team8.domain.Course" relationship="TO_ONE">
+      <point x="0.0" y="0.0" />
+      <point x="-204.97899207898058" y="621.9427292965763" />
+      <point x="-222.1813798645391" y="621.9427292965763" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="edu.ea.project.team8.domain.BarCodeRecord" target="edu.ea.project.team8.domain.Student" relationship="TO_ONE">
+      <point x="0.0" y="0.0" />
+      <point x="511.941865938618" y="292.5088642881596" />
+      <point x="511.941865938618" y="245.35502409625485" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="edu.ea.project.team8.domain.Faculty" target="edu.ea.project.team8.domain.CourseOffering" relationship="TO_MANY">
+      <point x="0.0" y="0.0" />
+      <point x="-30.81557800482142" y="394.9072053562527" />
+      <point x="-204.97899207898058" y="394.9072053562527" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="edu.ea.project.team8.domain.Student" target="edu.ea.project.team8.domain.Person" relationship="GENERALIZATION">
+      <point x="-79.0" y="45.5" />
+      <point x="418.07926075373655" y="290.85502409625485" />
+      <point x="418.07926075373655" y="53.687406727126614" />
+      <point x="-78.50048809523818" y="0.0" />
+    </edge>
+    <edge source="edu.ea.project.team8.domain.Registration" target="edu.ea.project.team8.domain.Student" relationship="TO_ONE">
+      <point x="0.0" y="0.0" />
+      <point x="683.9400183675812" y="494.4427292965763" />
+      <point x="1266.5163802528532" y="494.4427292965763" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Components" zoom="0.5337519623233908" showDependencies="true" x="707.6570148840478" y="669.0000000000001" />
+  <SelectedNodes>
+    <node>edu.ea.project.team8.domain.BarCodeRecord</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
