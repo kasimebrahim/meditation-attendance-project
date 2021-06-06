@@ -28,6 +28,10 @@ class ApplicationTests {
     private StudentService studentService;
     @Autowired
     private TimeslotService timeSlotService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private RoleService roleService;
 
     /*
     * A collection of sanity tests.
@@ -43,6 +47,8 @@ class ApplicationTests {
         assertThat(registrationService).isNotNull();
         assertThat(studentService).isNotNull();
         assertThat(timeSlotService).isNotNull();
+        assertThat(userService).isNotNull();
+        assertThat(roleService).isNotNull();
     }
 
 }
