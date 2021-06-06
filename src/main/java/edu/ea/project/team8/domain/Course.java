@@ -8,7 +8,7 @@ import lombok.Data;
 @Entity
 public class Course {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	private String id;
 
     private String code;
