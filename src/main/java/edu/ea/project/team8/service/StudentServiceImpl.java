@@ -25,8 +25,7 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public List<Student> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findAll();
 	}
 
 	@Override
@@ -37,6 +36,11 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public List<Course> findAllCoursesTaken(Integer id) {
 		return repository.findAllCoursesTakenBefore(id, LocalDate.now());
+	}
+
+	@Override
+	public Student addStudent(Student student) {
+		return repository.save(student);
 	}
 
 }

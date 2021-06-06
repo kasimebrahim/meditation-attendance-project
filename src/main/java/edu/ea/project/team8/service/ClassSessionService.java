@@ -5,5 +5,6 @@ import java.util.List;
 import edu.ea.project.team8.domain.ClassSession;
 
 public interface ClassSessionService {
-	public List<ClassSession> findAll(); 
+	public List<ClassSession> findAll();
+	public void addSession(ClassSession session);
 }
