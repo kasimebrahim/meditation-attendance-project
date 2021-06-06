@@ -10,12 +10,11 @@ import edu.ea.project.team8.domain.Person;
 
 
 @Service("personService")
-@Transactional(propagation=Propagation.REQUIRED)
+@Transactional(propagation=Propagation.REQUIRED, readOnly = true)
 public class PersonServiceImpl implements PersonService {
 
 	@Override
 	public List<Person> findAll() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -5,8 +5,10 @@ import java.time.LocalTime;
 import javax.persistence.*;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "Timeslot")
 public class Timeslot {
@@ -26,4 +28,10 @@ public class Timeslot {
     @Column(nullable = false)
     private LocalTime endTime;
 
+    public Timeslot(String code, String title, LocalTime startTime, LocalTime endTime) {
+        this.code = code;
+        this.title = title;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
 }

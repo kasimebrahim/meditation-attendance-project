@@ -5,8 +5,10 @@ import java.time.LocalDate;
 import javax.persistence.*;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @Entity
 public class Registration {
 	
@@ -25,4 +27,10 @@ public class Registration {
 	@JoinColumn(name="studentid")
 	private Student student;
 
+	public Registration(LocalDate date, CourseOffering offering, Student student) {
+		this.date = date;
+		this.offering = offering;
+		this.student = student;
+		offering.addRegistration(this);
+	}
 }

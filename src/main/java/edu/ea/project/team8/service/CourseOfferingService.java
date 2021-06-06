@@ -5,5 +5,6 @@ import java.util.List;
 import edu.ea.project.team8.domain.CourseOffering;
 
 public interface CourseOfferingService {
-	public List<CourseOffering> findAll(); 
+	public List<CourseOffering> findAll();
+	public void addCourseOffering(CourseOffering offering);
 }
