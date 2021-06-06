@@ -23,7 +23,7 @@ public class Faculty extends Person {
 		this.title = title;
 	}
 
-	public void addOffering(CourseOffering offering) {
+	void addOffering(CourseOffering offering) {
 		this.offering.add(offering);
 	}
 }

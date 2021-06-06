@@ -31,11 +31,10 @@ public class ClassSession {
 	@JoinColumn(name = "locationId")
 	private Location location;
 
-	public ClassSession(LocalDate date, CourseOffering offering, Location location) {
+	ClassSession(LocalDate date, CourseOffering offering, Location location) {
 		this.date = date;
 		this.offering = offering;
 		this.location = location;
-		offering.addSession(this);
 	}
 
 	public Timeslot addTimeslot(String code, String title, LocalTime startTime, LocalTime endTime) {

@@ -33,7 +33,7 @@ public class CourseOffering {
 	@Column(nullable = false)
 	private LocalDate endDate;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "offerid")
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Registration> registrations;
@@ -59,9 +59,15 @@ public class CourseOffering {
 		this.faculty = faculty;
 	}
 
-	public void addRegistration(Registration registration) {
+	public Registration register(LocalDate date, Student student) {
+		Registration registration = new Registration(date, this, student);
 		this.registrations.add(registration);
+		return registration;
 	}
 
-	public void addSession(ClassSession session) {this.sessions.add(session);}
+	public ClassSession createSession(LocalDate date, Location location) {
+		ClassSession session = new ClassSession(date, this, location);
+		this.sessions.add(session);
+		return session;
+	}
 }

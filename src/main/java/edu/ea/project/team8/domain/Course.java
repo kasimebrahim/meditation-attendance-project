@@ -37,6 +37,8 @@ public class Course {
 	public CourseOffering createOffering(String period, LocalDate beginDate,
 	                                     LocalDate endDate, int capacity,
 	                                     Faculty faculty) {
-		return new CourseOffering(this, period, beginDate, endDate, capacity, faculty);
+		CourseOffering cof = new CourseOffering(this, period, beginDate, endDate, capacity, faculty);
+		faculty.addOffering(cof);
+		return cof;
 	}
 }
