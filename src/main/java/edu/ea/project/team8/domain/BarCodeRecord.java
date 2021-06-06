@@ -1,11 +1,13 @@
 package edu.ea.project.team8.domain;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
 @Entity
 public class BarCodeRecord {
     @Id
@@ -17,11 +19,18 @@ public class BarCodeRecord {
 
     private LocalDateTime timeStamp;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "barcodeId")
     private Location location;
 
     @ManyToOne
     @JoinColumn(name = "studentId")
     private Student student;
+
+    public BarCodeRecord(String barcode, LocalDateTime timeStamp, Location location, Student student) {
+        this.barcode = barcode;
+        this.timeStamp = timeStamp;
+        this.location = location;
+        this.student = student;
+    }
 }

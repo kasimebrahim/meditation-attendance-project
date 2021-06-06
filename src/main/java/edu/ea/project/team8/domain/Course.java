@@ -3,8 +3,13 @@ package edu.ea.project.team8.domain;
 import javax.persistence.*;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Data
+@NoArgsConstructor
 @Entity
 public class Course {
 	@Id
@@ -22,4 +27,16 @@ public class Course {
 	@Column(length = 4000)
     private String description;
 
+	public Course(String code, String abbreviation, String name, String description) {
+		this.code = code;
+		this.abbreviation = abbreviation;
+		this.name = name;
+		this.description = description;
+	}
+
+	public CourseOffering createOffering(String period, LocalDate beginDate,
+	                                     LocalDate endDate, int capacity,
+	                                     Faculty faculty) {
+		return new CourseOffering(this, period, beginDate, endDate, capacity, faculty);
+	}
 }

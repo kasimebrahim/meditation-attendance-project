@@ -1,11 +1,15 @@
 package edu.ea.project.team8.domain;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
 
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "EA_User")
 public class User {
@@ -33,4 +37,17 @@ public class User {
 			inverseJoinColumns = {@JoinColumn(name = "role_id")}
 	)
 	private Collection<Role> roles;
+
+	public User(String name, String passwordHash) {
+		this.name = name;
+		this.passwordHash = passwordHash;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
+	public void addRole(Role role) {
+		this.roles.add(role);
+	}
 }
