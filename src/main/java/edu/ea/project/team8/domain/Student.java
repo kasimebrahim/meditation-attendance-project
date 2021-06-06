@@ -1,10 +1,13 @@
 package edu.ea.project.team8.domain;
 
+import lombok.Data;
+
 import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+@Data
 @Entity
 public class Student extends Person {
 	
