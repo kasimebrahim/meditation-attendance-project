@@ -20,7 +20,7 @@ public class ClassSession {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Timeslot timeslot;
