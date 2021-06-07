@@ -2,6 +2,7 @@ package edu.ea.project.team8.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
@@ -9,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Data
+@ToString(callSuper = true)
 @NoArgsConstructor
 @Entity
 public class Student extends Person {
