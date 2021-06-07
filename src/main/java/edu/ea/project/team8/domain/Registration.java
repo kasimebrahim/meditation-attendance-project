@@ -27,10 +27,9 @@ public class Registration {
 	@JoinColumn(name="studentid")
 	private Student student;
 
-	public Registration(LocalDate date, CourseOffering offering, Student student) {
+	Registration(LocalDate date, CourseOffering offering, Student student) {
 		this.date = date;
 		this.offering = offering;
 		this.student = student;
-		offering.addRegistration(this);
 	}
 }

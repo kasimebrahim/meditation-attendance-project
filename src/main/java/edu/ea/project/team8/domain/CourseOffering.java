@@ -1,11 +1,13 @@
 package edu.ea.project.team8.domain;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -20,7 +22,7 @@ public class CourseOffering {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "course_id", nullable = false)
 	private Course course;
 
@@ -33,10 +35,11 @@ public class CourseOffering {
 	@Column(nullable = false)
 	private LocalDate endDate;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "offerid")
+	@ToString.Exclude
 	@Fetch(FetchMode.SUBSELECT)
-	private List<Registration> registrations;
+	private List<Registration> registrations = new ArrayList<>();
 
 	@Column
 	private int capacity;
@@ -45,9 +48,8 @@ public class CourseOffering {
 	@JoinColumn(name = "facultyId")
 	private Faculty faculty;
 
-	@OneToMany
-	@JoinColumn(name = "sessionId")
-	private List<ClassSession> sessions;
+	@OneToMany(mappedBy="offering")
+	private List<ClassSession> sessions = new ArrayList<>();
 
 	CourseOffering(Course course, String period, LocalDate beginDate,
 	               LocalDate endDate, int capacity, Faculty faculty) {
@@ -59,9 +61,15 @@ public class CourseOffering {
 		this.faculty = faculty;
 	}
 
-	public void addRegistration(Registration registration) {
+	public Registration register(LocalDate date, Student student) {
+		Registration registration = new Registration(date, this, student);
 		this.registrations.add(registration);
+		return registration;
 	}
 
-	public void addSession(ClassSession session) {this.sessions.add(session);}
+	public ClassSession createSession(LocalDate date, Location location) {
+		ClassSession session = new ClassSession(date, this, location);
+		this.sessions.add(session);
+		return session;
+	}
 }
