@@ -27,4 +27,14 @@ public class LocationServiceImpl implements LocationService {
 		return repository.findAll();
 	}
 
+	@Override
+	public Location findById(Integer id) {
+		return repository.findById(id).orElseThrow();
+	}
+
+	@Override
+	public Location findByName(String name) {
+		return repository.findByName(name);
+	}
+
 }

@@ -1,5 +1,6 @@
 package edu.ea.project.team8.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import edu.ea.project.team8.repository.CourseOfferingRepository;
@@ -30,6 +31,26 @@ public class CourseOfferingServiceImpl implements CourseOfferingService {
 	@Override
 	public void addCourseOffering(CourseOffering offering) {
 		repository.save(offering);
+	}
+
+	@Override
+	public List<CourseOffering> findAllByCourse(Integer cid) {
+		return repository.findAllByCourse(cid);
+	}
+
+	@Override
+	public List<CourseOffering> findAllByStudent(Integer sid) {
+		return repository.findAllByStudent(sid);
+	}
+
+	@Override
+	public List<CourseOffering> findAllByBeginDate(LocalDate beginDate) {
+		return repository.findAllByBeginDate(beginDate);
+	}
+
+	@Override
+	public CourseOffering findByStuCouDate(Integer sid, Integer cid, LocalDate beginDate) {
+		return repository.findByStuCouDate(sid, cid, beginDate);
 	}
 
 }
