@@ -30,6 +30,7 @@ public interface CourseOfferingRepository extends JpaRepository<CourseOffering, 
 			"FROM CourseOffering cof join cof.registrations rg, ClassSession cs, BarCodeRecord br " +
 			"WHERE br.location.id = cs.location.id " +
 			"and rg.student.id = :sid " +
+			"and br.student.id = :sid " +
 			"and cs.offering.id = cof.id " +
 			"and year(cs.date) = year(br.timeStamp) and month(cs.date) = month(br.timeStamp) and day(cs.date) = day(br.timeStamp) " +
 			"and hour(cs.timeslot.endTime) >= hour(br.timeStamp) " +
@@ -40,6 +41,7 @@ public interface CourseOfferingRepository extends JpaRepository<CourseOffering, 
 			"FROM CourseOffering cof join cof.registrations rg, ClassSession cs, BarCodeRecord br " +
 			"WHERE br.location.id = cs.location.id " +
 			"and cof.course.id = :cid " +
+			"and br.student.id = rg.student.id " +
 			"and cs.offering.id = cof.id " +
 			"and year(cs.date) = year(br.timeStamp) and month(cs.date) = month(br.timeStamp) and day(cs.date) = day(br.timeStamp) " +
 			"and hour(cs.timeslot.endTime) >= hour(br.timeStamp) " +
@@ -50,6 +52,7 @@ public interface CourseOfferingRepository extends JpaRepository<CourseOffering, 
 			"FROM CourseOffering cof join cof.registrations rg, ClassSession cs, BarCodeRecord br " +
 			"WHERE br.location.id = cs.location.id " +
 			"and rg.student.id = :sid " +
+			"and br.student.id = :sid " +
 			"and cof.course.id = :cid " +
 			"and cs.offering.id = cof.id " +
 			"and year(cs.date) = year(br.timeStamp) and month(cs.date) = month(br.timeStamp) and day(cs.date) = day(br.timeStamp) " +
