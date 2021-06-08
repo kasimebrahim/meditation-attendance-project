@@ -3,6 +3,7 @@ package edu.ea.project.team8.domain;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
 
@@ -33,10 +34,10 @@ public class Student extends Person {
 	@Column(columnDefinition = "char(13)")
 	private String barcode;
 
-	public Student(String firstName, String lastName, String emailAddress,
+	public Student(String username, String password, String firstName, String lastName, String emailAddress,
 	               String studentId, String visaStatus, String status,
 	               String track, LocalDate entryDate, String barcode) {
-		super(firstName, lastName, emailAddress);
+		super(username, new BCryptPasswordEncoder().encode(password), firstName, lastName, emailAddress);
 		this.studentId = studentId;
 		this.visaStatus = visaStatus;
 		this.status = status;
