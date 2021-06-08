@@ -21,7 +21,7 @@ public class BarCodeRecord implements Serializable {
     private LocalDateTime timeStamp;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "barcodeId")
+    @JoinColumn(name = "locationId")
     private Location location;
 
     @ManyToOne
