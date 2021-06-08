@@ -33,4 +33,9 @@ public class BarCodeRecordServiceImpl implements BarCodeRecordService {
 		repository.save(barCodeRecord);
 	}
 
+	@Override
+	public List<BarCodeRecord> findAllByStudentId(Integer id) {
+		return repository.findAllByStudentId(id);
+	}
+
 }

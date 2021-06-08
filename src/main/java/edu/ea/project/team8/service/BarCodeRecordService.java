@@ -7,4 +7,6 @@ import edu.ea.project.team8.domain.BarCodeRecord;
 public interface BarCodeRecordService {
 	public List<BarCodeRecord> findAll();
 	public void addRecord(BarCodeRecord barCodeRecord);
+
+	public List<BarCodeRecord> findAllByStudentId(Integer id);
 }
