@@ -9,6 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service("timeslotService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class TimeslotServiceImpl extends BaseServiceImpl<Timeslot, Integer> {
+public class TimeslotServiceImpl extends BaseServiceImpl<Timeslot, Integer> implements TimeslotService {
 
 }

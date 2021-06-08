@@ -9,6 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service("courseService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class CourseServiceImpl extends BaseServiceImpl<Course, Integer> {
+public class CourseServiceImpl extends BaseServiceImpl<Course, Integer> implements CourseService {
 
 }

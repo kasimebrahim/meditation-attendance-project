@@ -8,6 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service("facultyService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class FacultyServiceImpl extends BaseServiceImpl<Faculty, Integer> {
+public class FacultyServiceImpl extends BaseServiceImpl<Faculty, Integer> implements FacultyService {
 
 }

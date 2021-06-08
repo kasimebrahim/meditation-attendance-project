@@ -9,6 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service("locationService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class LocationServiceImpl extends BaseServiceImpl<Location, Integer> {
+public class LocationServiceImpl extends BaseServiceImpl<Location, Integer> implements LocationService {
 
 }
