@@ -1,13 +1,13 @@
 package edu.ea.project.team8.common.controller;
 
 import edu.ea.project.team8.common.service.BaseService;
-import edu.ea.project.team8.domain.Timeslot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @Component
 public abstract class BaseController<T,I> {
 
@@ -25,12 +25,12 @@ public abstract class BaseController<T,I> {
     }
 
     @PostMapping
-    public T addTimeslot(@RequestBody T entity){
+    public T add(@RequestBody T entity){
         return baseService.add(entity);
     }
 
     @PutMapping
-    public T updateTimeslot(@RequestBody T entity){
+    public T update(@RequestBody T entity){
         return baseService.update(entity);
     }
 
