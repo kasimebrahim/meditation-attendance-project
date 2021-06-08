@@ -20,7 +20,7 @@ public class BarCodeRecord {
     private LocalDateTime timeStamp;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "barcodeId")
+    @JoinColumn(name = "locationId")
     private Location location;
 
     @ManyToOne

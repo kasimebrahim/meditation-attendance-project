@@ -15,7 +15,7 @@ import javax.persistence.Entity;
 @Entity
 public class Student extends Person {
 
-	@Column(name="personid", columnDefinition = "char(11)")
+	@Column(name="studentId", columnDefinition = "char(11)")
 	private String studentId;
 
 	@Column(name="visastatus", columnDefinition = "nvarchar(50)")
