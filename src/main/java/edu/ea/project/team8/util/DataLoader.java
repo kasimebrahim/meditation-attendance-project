@@ -2,7 +2,7 @@ package edu.ea.project.team8.util;
 
 import edu.ea.project.team8.domain.*;
 import edu.ea.project.team8.repository.*;
-import edu.ea.project.team8.service.UserService;
+import edu.ea.project.team8.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
@@ -45,7 +45,7 @@ public class DataLoader implements CommandLineRunner {
     CourseOfferingRepository courseOfferingRepository;
 
     @Autowired
-    UserService userService;
+    PersonService personService;
 
     @Override
     public void run(String... args) throws RuntimeException {
@@ -62,18 +62,19 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void createUsers() {
-        //  String username, String passwordHash
+        //  String username, String passwordHash, String firstName, String lastName, String emailAddress
         List<Role> roles = roleRepository.findAll();
-        User admin = new User("admin", "admin");
+        Person admin = new Person("admin", "admin", "Admin", "Admin", "Admin@miu");
         admin.addRole(roles.get(0));
-        userService.addUser(admin);
-        User faculty = new User("faculty", "faculty");
+        System.out.println(admin);
+        personService.addPerson(admin);
+        Person faculty = new Person("faculty", "faculty", "Faculty", "Faculty", "Faculty@miu.edu");
         faculty.addRole(roles.get(2));
         faculty.addRole(roles.get(3));
-        userService.addUser(faculty);
-        User student = new User("student", "student");
+        personService.addPerson(faculty);
+        Person student = new Person("student", "student", "Student", "Student", "Student@miu.edu");
         student.addRole(roles.get(1));
-        userService.addUser(student);
+        personService.addPerson(student);
     }
 
     private void creatCourseOffering() {
@@ -90,18 +91,18 @@ public class DataLoader implements CommandLineRunner {
 
     private void createStudents() {
         //  String firstName, String lastName, String emailAddress, String studentId, String visaStatus, String status, String track, LocalDate entryDate, String barcode
-        Student sam = new Student("Samson Tekleab", "Zaid", "szaid@miu.edu", "000-xx-yyyy", "F1", "Online", "MSCS", LocalDate.of(2021, Month.JANUARY, 26), "abcdefghijklm");
+        Student sam = new Student("samson", "zaid", "Samson Tekleab", "Zaid", "szaid@miu.edu", "000-xx-yyyy", "F1", "Online", "MSCS", LocalDate.of(2021, Month.JANUARY, 26), "abcdefghijklm");
 
         studentRepository.saveAll(List.of(sam));
     }
 
     private void createFaculties() {
         // String firstName, String lastName, String emailAddress, String title
-        Faculty payman = new Faculty("Payman", "Salek", "psalek@miu.edu", "Associate Professor of Computer Science");
-        Faculty paul = new Faculty("Paul", "Corazza", "pcorazza@miu.edu", "Professor of Computer Science and Mathematics");
-        Faculty greg = new Faculty("Greg", "Guthrie", "guthrie@miu.edu", "Professor of Computer Science");
-        Faculty dean = new Faculty("Muhyieddin", "Al-Tarawneh", "maltarawneh@miu.edu", "Assistant Professor of Computer Science");
-        Faculty obinna = new Faculty("Obinna", "Kalu", "okalu@miu.edu", "Assistant Professor of Computer Science");
+        Faculty payman = new Faculty("payman", "salek", "Payman", "Salek", "psalek@miu.edu", "Associate Professor of Computer Science");
+        Faculty paul = new Faculty( "paul","corazza", "Paul", "Corazza", "pcorazza@miu.edu", "Professor of Computer Science and Mathematics");
+        Faculty greg = new Faculty( "greg", "guthrie","Greg", "Guthrie", "guthrie@miu.edu", "Professor of Computer Science");
+        Faculty dean = new Faculty("muhyieddin","altarawneh","Muhyieddin", "Al-Tarawneh", "maltarawneh@miu.edu", "Assistant Professor of Computer Science");
+        Faculty obinna = new Faculty("obinna", "kalu","Obinna", "Kalu", "okalu@miu.edu", "Assistant Professor of Computer Science");
 
         facultyRepository.saveAll(List.of(payman, paul, greg, dean, obinna));
     }

@@ -2,9 +2,7 @@ package edu.ea.project.team8.config;
 
 
 import edu.ea.project.team8.config.security.CustomUserDetails;
-import edu.ea.project.team8.service.UserService;
 import io.jsonwebtoken.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,9 +16,6 @@ import java.util.stream.Collectors;
 
 @Component
 public class JwtTokenUtil {
-
-    @Autowired
-    UserService userService;
 
     @Value("${jwt.secret}")
     private String secret;

@@ -2,7 +2,7 @@ package edu.ea.project.team8.config;
 
 import edu.ea.project.team8.config.security.JwtAuthenticationEntryPoint;
 import edu.ea.project.team8.config.security.JwtRequestFilter;
-import edu.ea.project.team8.service.UserService;
+import edu.ea.project.team8.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
     @Autowired
-    private UserService userService;
+    private PersonService personService;
 
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // configure AuthenticationManager so that it knows from where to load
         // user for matching credentials
         // Use BCryptPasswordEncoder
-        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(personService).passwordEncoder(passwordEncoder());
     }
 
     @Bean

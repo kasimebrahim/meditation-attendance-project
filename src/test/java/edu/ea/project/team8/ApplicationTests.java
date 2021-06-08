@@ -29,8 +29,6 @@ class ApplicationTests {
     @Autowired
     private TimeslotService timeSlotService;
     @Autowired
-    private UserService userService;
-    @Autowired
     private RoleService roleService;
     @Autowired
     private FacultyService facultyService;
@@ -49,7 +47,6 @@ class ApplicationTests {
         assertThat(registrationService).isNotNull();
         assertThat(studentService).isNotNull();
         assertThat(timeSlotService).isNotNull();
-        assertThat(userService).isNotNull();
         assertThat(roleService).isNotNull();
         assertThat(facultyService).isNotNull();
     }

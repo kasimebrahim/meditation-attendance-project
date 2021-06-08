@@ -4,7 +4,7 @@ package edu.ea.project.team8.controller;
 import edu.ea.project.team8.config.JwtTokenUtil;
 import edu.ea.project.team8.dto.JwtRequest;
 import edu.ea.project.team8.dto.JwtResponse;
-import edu.ea.project.team8.service.UserService;
+import edu.ea.project.team8.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,7 +22,7 @@ public class JwtAuthenticationController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserService userService;
+    private PersonService personService;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
@@ -36,7 +36,7 @@ public class JwtAuthenticationController {
         } catch (BadCredentialsException e) {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
-        final UserDetails userDetails = userService.loadUserByUsername(authenticationRequest.getUsername());
+        final UserDetails userDetails = personService.loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
 
         return ResponseEntity.ok(new JwtResponse(token));

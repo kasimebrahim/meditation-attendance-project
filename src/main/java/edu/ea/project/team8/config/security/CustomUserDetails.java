@@ -2,7 +2,6 @@ package edu.ea.project.team8.config.security;
 
 import edu.ea.project.team8.domain.Person;
 import edu.ea.project.team8.domain.Role;
-import edu.ea.project.team8.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,15 +14,13 @@ public class CustomUserDetails implements UserDetails {
     private final Integer id;
     private final String username;
     private final String password;
-    private final Person person;
     private final Collection<Role> roles;
 
-    public CustomUserDetails(User user) {
-        id = user.getId();
-        username = user.getUsername();
-        password = user.getPasswordHash();
-        roles = user.getRoles();
-        person = user.getPerson();
+    public CustomUserDetails(Person person) {
+        id = person.getId();
+        username = person.getUsername();
+        password = person.getPasswordHash();
+        roles = person.getRoles();
     }
 
     @Override
@@ -34,10 +31,6 @@ public class CustomUserDetails implements UserDetails {
 
     public Integer getId() {
         return id;
-    }
-
-    public Person getPerson() {
-        return person;
     }
 
     @Override
