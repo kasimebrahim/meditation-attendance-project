@@ -3,6 +3,7 @@ package edu.ea.project.team8.domain;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,8 +22,8 @@ public class Faculty extends Person {
 	@OneToMany(mappedBy = "faculty", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<CourseOffering> offering = new ArrayList<>();
 
-	public Faculty(String firstName, String lastName, String emailAddress, String title) {
-		super(firstName, lastName, emailAddress);
+	public Faculty(String username, String password, String firstName, String lastName, String emailAddress, String title) {
+		super(username, new BCryptPasswordEncoder().encode(password), firstName, lastName, emailAddress);
 		this.title = title;
 	}
 

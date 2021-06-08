@@ -2,6 +2,7 @@ package edu.ea.project.team8.util;
 
 import edu.ea.project.team8.domain.*;
 import edu.ea.project.team8.repository.*;
+import edu.ea.project.team8.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
@@ -34,15 +35,18 @@ public class DataLoader implements CommandLineRunner {
     @Qualifier("faculityRepository")
     @Autowired
     FacultyRepository facultyRepository;
-    
+
     @Qualifier("studentRepository")
     @Autowired
     StudentRepository studentRepository;
-    
+
     @Qualifier("courseOfferingRepository")
     @Autowired
     CourseOfferingRepository courseOfferingRepository;
-    
+
+    @Autowired
+    PersonService personService;
+
     @Override
     public void run(String... args) throws RuntimeException {
 
@@ -53,7 +57,24 @@ public class DataLoader implements CommandLineRunner {
         createFaculties();
         createStudents();
         creatCourseOffering();
+        createUsers();
 
+    }
+
+    private void createUsers() {
+        //  String username, String passwordHash, String firstName, String lastName, String emailAddress
+        List<Role> roles = roleRepository.findAll();
+        Person admin = new Person("admin", "admin", "Admin", "Admin", "Admin@miu");
+        admin.addRole(roles.get(0));
+        System.out.println(admin);
+        personService.addPerson(admin);
+        Person faculty = new Person("faculty", "faculty", "Faculty", "Faculty", "Faculty@miu.edu");
+        faculty.addRole(roles.get(2));
+        faculty.addRole(roles.get(3));
+        personService.addPerson(faculty);
+        Person student = new Person("student", "student", "Student", "Student", "Student@miu.edu");
+        student.addRole(roles.get(1));
+        personService.addPerson(student);
     }
 
     private void creatCourseOffering() {
@@ -70,25 +91,25 @@ public class DataLoader implements CommandLineRunner {
 
     private void createStudents() {
         //  String firstName, String lastName, String emailAddress, String studentId, String visaStatus, String status, String track, LocalDate entryDate, String barcode
-        Student sam = new Student("Samson Tekleab", "Zaid", "szaid@miu.edu", "000-xx-yyyy", "F1", "Online", "MSCS", LocalDate.of(2021, Month.JANUARY, 26), "abcdefghijklm");
-        
+        Student sam = new Student("samson", "zaid", "Samson Tekleab", "Zaid", "szaid@miu.edu", "000-xx-yyyy", "F1", "Online", "MSCS", LocalDate.of(2021, Month.JANUARY, 26), "abcdefghijklm");
+
         studentRepository.saveAll(List.of(sam));
     }
 
     private void createFaculties() {
         // String firstName, String lastName, String emailAddress, String title
-        Faculty payman = new Faculty("Payman", "Salek", "psalek@miu.edu", "Associate Professor of Computer Science");
-        Faculty paul = new Faculty("Paul", "Corazza", "pcorazza@miu.edu", "Professor of Computer Science and Mathematics");
-        Faculty greg = new Faculty("Greg", "Guthrie", "guthrie@miu.edu", "Professor of Computer Science");
-        Faculty dean = new Faculty("Muhyieddin", "Al-Tarawneh", "maltarawneh@miu.edu", "Assistant Professor of Computer Science");
-        Faculty obinna = new Faculty("Obinna", "Kalu", "okalu@miu.edu", "Assistant Professor of Computer Science");
+        Faculty payman = new Faculty("payman", "salek", "Payman", "Salek", "psalek@miu.edu", "Associate Professor of Computer Science");
+        Faculty paul = new Faculty( "paul","corazza", "Paul", "Corazza", "pcorazza@miu.edu", "Professor of Computer Science and Mathematics");
+        Faculty greg = new Faculty( "greg", "guthrie","Greg", "Guthrie", "guthrie@miu.edu", "Professor of Computer Science");
+        Faculty dean = new Faculty("muhyieddin","altarawneh","Muhyieddin", "Al-Tarawneh", "maltarawneh@miu.edu", "Assistant Professor of Computer Science");
+        Faculty obinna = new Faculty("obinna", "kalu","Obinna", "Kalu", "okalu@miu.edu", "Assistant Professor of Computer Science");
 
         facultyRepository.saveAll(List.of(payman, paul, greg, dean, obinna));
     }
 
     private void createRoles() {
         //  String name, String description
-        Role roleAdmin = new Role("ROLE_ADMIN","Admin does everything.");
+        Role roleAdmin = new Role("ROLE_ADMIN", "Admin does everything.");
         Role roleStudent = new Role("ROLE_STUDENT", "Student does student stuff.");
         Role roleFaculty = new Role("ROLE_FACULTY", "Faculty does faculty stuff.");
         Role rolePersonnel = new Role("ROLE_PERSONNEL", "Personnel does personnel stuff.");
@@ -108,7 +129,7 @@ public class DataLoader implements CommandLineRunner {
 
     private void createCourses() {
         //  String code, String abbreviation, String name, String description
-        Course fpp = new Course("CS390", "FPP", "Fundamental Programming Practices", "This course provides a focused program for enhancing programming and analytical skills in five areas: problem solving, data structures, object-oriented programming, the Java programming language, and the use of recursion in Java programs.\n" +"\n" +"These topics are of particular importance as a prerequisite for the courses in the graduate program in Computer Science.\n" +"\n" +"Topics include: elements of Java programming, object-oriented design and implementation, data structures (including lists, stacks, queues, binary search trees, hash tables, and sets), the exception hierarchy, file i/o and streams, and JDBC. (4 credits) Prerequisite: For undergraduate students: CS 221; for graduate students: consent of the department faculty (4 units)");
+        Course fpp = new Course("CS390", "FPP", "Fundamental Programming Practices", "This course provides a focused program for enhancing programming and analytical skills in five areas: problem solving, data structures, object-oriented programming, the Java programming language, and the use of recursion in Java programs.\n" + "\n" + "These topics are of particular importance as a prerequisite for the courses in the graduate program in Computer Science.\n" + "\n" + "Topics include: elements of Java programming, object-oriented design and implementation, data structures (including lists, stacks, queues, binary search trees, hash tables, and sets), the exception hierarchy, file i/o and streams, and JDBC. (4 credits) Prerequisite: For undergraduate students: CS 221; for graduate students: consent of the department faculty (4 units)");
         Course mpp = new Course("CS401", "MPP", "Modern Programming Practices", "This course presents the fundamental principles of object-oriented programming. Students will learn how to write reusable and better-maintained software, and integrate this knowledge with laboratory assignments and projects. Topics include: fundamental principles and models of object-oriented programming, UML class diagrams and design principles that promote re-usability and maintainability of software. (4 units)");
         Course wap = new Course("CS472", "WAP", "Web Application Programming", "This course provides a systematic introduction to programming interactive and dynamic web applications. The course is intended for individuals with little or no prior web application programming experience. This offering will use Java servlets and JSP for server side processing. The course will introduce HTML and CSS. JavaScript is a focus of the course, and is covered as a functional programming language including jQuery, Ajax, and JavaScript namespaces and modules. It is a prerequisite for the CS545 Web Application Architecture. It does not cover AngularJS or NodeJS, but the JavaScript covered here will prepare you to learn those technologies. (4 units)\n" + "Prerequisite: CS 220 or CS 401 or consent of the department faculty.");
         Course asd = new Course("CS525", "ASD", "Advanced Software Development", "This course considers the current methods and practices for good design of software systems. Topics include: software design patterns, frameworks, architectures, and designing systems to apply these multi-level abstractions. (2-4 credits) Prerequisite: CS 401 or consent of the department faculty.");
@@ -123,7 +144,7 @@ public class DataLoader implements CommandLineRunner {
 
     private void createTimeslots() {
         //  String code, String title, LocalTime startTime, LocalTime endTime
-        Timeslot amSession = new Timeslot("AM", "AM Session", LocalTime.of(10,0), LocalTime.of(12, 30));
+        Timeslot amSession = new Timeslot("AM", "AM Session", LocalTime.of(10, 0), LocalTime.of(12, 30));
         Timeslot pmSession = new Timeslot("PM", "PM Session", LocalTime.of(14, 0), LocalTime.of(15, 0));
 
         timeslotRepository.saveAll(List.of(amSession, pmSession));

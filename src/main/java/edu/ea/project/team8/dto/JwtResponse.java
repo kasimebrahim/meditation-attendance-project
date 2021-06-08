@@ -1,16 +1,9 @@
 package edu.ea.project.team8.dto;
 
-import java.io.Serializable;
+import lombok.Data;
 
-public class JwtResponse implements Serializable {
-    private static final long serialVersionUID = -8091879091924046844L;
-    private final String jwttoken;
+@Data
+public class JwtResponse {
+    private final String token;
 
-    public JwtResponse(String jwttoken) {
-        this.jwttoken = jwttoken;
-    }
-
-    public String getToken() {
-        return this.jwttoken;
-    }
 }
