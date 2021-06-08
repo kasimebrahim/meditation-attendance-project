@@ -44,7 +44,7 @@ public class CourseOffering {
 	@Column
 	private int capacity;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "facultyId")
 	private Faculty faculty;
 
