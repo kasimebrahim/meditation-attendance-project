@@ -2,6 +2,7 @@ package edu.ea.project.team8.domain;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -29,6 +30,7 @@ public class Person {
 
     private String username;
 
+    @JsonIgnore
     @Column(name = "password_hash")
     private String passwordHash;
 

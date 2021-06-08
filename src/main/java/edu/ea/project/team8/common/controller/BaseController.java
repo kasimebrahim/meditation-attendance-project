@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Component
+@CrossOrigin
 public abstract class BaseController<T,I> {
 
     @Autowired
