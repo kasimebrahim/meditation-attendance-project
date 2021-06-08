@@ -44,11 +44,12 @@ public class CourseOffering {
 	@Column
 	private int capacity;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "facultyId")
 	private Faculty faculty;
 
-	@OneToMany(mappedBy="offering")
+	@ToString.Exclude
+	@OneToMany(mappedBy="offering", cascade = CascadeType.ALL)
 	private List<ClassSession> sessions = new ArrayList<>();
 
 	CourseOffering(Course course, String period, LocalDate beginDate,
@@ -69,6 +70,12 @@ public class CourseOffering {
 
 	public ClassSession createSession(LocalDate date, Location location) {
 		ClassSession session = new ClassSession(date, this, location);
+		this.sessions.add(session);
+		return session;
+	}
+
+	public ClassSession createSession(LocalDate date, Location location, Timeslot timeslot) {
+		ClassSession session = new ClassSession(date, this, location, timeslot);
 		this.sessions.add(session);
 		return session;
 	}
