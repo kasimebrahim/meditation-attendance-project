@@ -51,4 +51,20 @@ public class AttendanceServiceImpl implements AttendanceService{
 		 * */
 		return courseOfferingRepository.findAttendanceOfByCourse(personId, courseId);
 	}
+
+	@Override
+	public List<Attendance> findAttendancesByCourseOffering(Integer offeringId) {
+		/*
+		 * This is very very ugly and temporary should use Attendance view.
+		 * */
+		return courseOfferingRepository.findAttendancesByCourseOffering(offeringId);
+	}
+
+	@Override
+	public List<Attendance> findAttendancesOfByCourseOffering(Integer studentId, Integer courseOfferingId) {
+		/*
+		 * This is very very ugly and temporary should use Attendance view.
+		 * */
+		return courseOfferingRepository.findAttendancesOfByCourseOffering(studentId, courseOfferingId);
+	}
 }

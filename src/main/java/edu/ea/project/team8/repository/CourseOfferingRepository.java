@@ -59,4 +59,27 @@ public interface CourseOfferingRepository extends JpaRepository<CourseOffering, 
 			"and hour(cs.timeslot.endTime) >= hour(br.timeStamp) " +
 			"and hour(cs.timeslot.startTime) <= hour(br.timeStamp)")
 	List<Attendance> findAttendanceOfByCourse(@Param("sid") Integer sid, @Param("cid") Integer cid);
+
+	@Query("SELECT distinct new edu.ea.project.team8.service.dto.Attendance(rg.student.id, br.id, cs.id) " +
+			"FROM CourseOffering cof join cof.registrations rg, ClassSession cs, BarCodeRecord br " +
+			"WHERE br.location.id = cs.location.id " +
+			"and cof.id = :offeringId " +
+			"and rg.student.id = br.student.id " +
+			"and cs.offering.id = cof.id " +
+			"and year(cs.date) = year(br.timeStamp) and month(cs.date) = month(br.timeStamp) and day(cs.date) = day(br.timeStamp) " +
+			"and hour(cs.timeslot.endTime) >= hour(br.timeStamp) " +
+			"and hour(cs.timeslot.startTime) <= hour(br.timeStamp)")
+	List<Attendance> findAttendancesByCourseOffering(@Param("offeringId") Integer offeringId);
+
+	@Query("SELECT distinct new edu.ea.project.team8.service.dto.Attendance(rg.student.id, br.id, cs.id) " +
+			"FROM CourseOffering cof join cof.registrations rg, ClassSession cs, BarCodeRecord br " +
+			"WHERE br.location.id = cs.location.id " +
+			"and cof.id = :offeringId " +
+			"and rg.student.id = :sid " +
+			"and rg.student.id = br.student.id " +
+			"and cs.offering.id = cof.id " +
+			"and year(cs.date) = year(br.timeStamp) and month(cs.date) = month(br.timeStamp) and day(cs.date) = day(br.timeStamp) " +
+			"and hour(cs.timeslot.endTime) >= hour(br.timeStamp) " +
+			"and hour(cs.timeslot.startTime) <= hour(br.timeStamp)")
+	List<Attendance> findAttendancesOfByCourseOffering(@Param("sid") Integer sid, @Param("offeringId") Integer offeringId);
 }
