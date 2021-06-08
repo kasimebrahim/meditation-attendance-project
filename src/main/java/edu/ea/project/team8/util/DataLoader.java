@@ -32,7 +32,7 @@ public class DataLoader implements CommandLineRunner {
     @Autowired
     TimeslotRepository timeslotRepository;
 
-    @Qualifier("faculityRepository")
+    @Qualifier("facultyRepository")
     @Autowired
     FacultyRepository facultyRepository;
 
