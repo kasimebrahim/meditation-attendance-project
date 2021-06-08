@@ -38,6 +38,13 @@ public class ClassSession implements Serializable {
 		this.location = location;
 	}
 
+	ClassSession(LocalDate date, CourseOffering offering, Location location, Timeslot timeslot) {
+		this.date = date;
+		this.offering = offering;
+		this.location = location;
+		this.timeslot = timeslot;
+	}
+
 	public Timeslot addTimeslot(String code, String title, LocalTime startTime, LocalTime endTime) {
 		this.timeslot = new Timeslot(code, title, startTime, endTime);
 		return timeslot;
