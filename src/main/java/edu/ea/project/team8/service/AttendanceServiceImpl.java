@@ -1,5 +1,7 @@
 package edu.ea.project.team8.service;
 
+import edu.ea.project.team8.common.service.BaseService;
+import edu.ea.project.team8.common.service.BaseServiceImpl;
 import edu.ea.project.team8.domain.Attendance;
 import edu.ea.project.team8.domain.ClassSession;
 import edu.ea.project.team8.repository.AttendanceRepository;
@@ -71,6 +73,18 @@ public class AttendanceServiceImpl implements AttendanceService{
 		List<Attendance> attendances = attendanceRepository.findOfStudentByCourseOffering(sid, cofid);
 		List<ClassSession> classSessions = classSessionRepository.findByCourseOfferingId(cofid);
 		return getCompleteAttendance(sid, attendances, classSessions);
+	}
+
+	@Override
+	public Attendance updateAttendance(Attendance attendance) {
+		/*
+		* Only present attendances are stored. So updating to absent is equal to deleting.
+		* */
+		if (attendance.isPresent())
+			attendanceRepository.save(attendance);
+		else
+			attendanceRepository.delete(attendance);
+		return attendance;
 	}
 
 	private List<Attendance> getCompleteAttendance(Integer sid, List<Attendance> attendances, List<ClassSession> classSessions) {
