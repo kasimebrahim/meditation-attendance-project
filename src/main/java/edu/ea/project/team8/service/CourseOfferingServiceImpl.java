@@ -67,4 +67,13 @@ public class CourseOfferingServiceImpl extends BaseServiceImpl<CourseOffering, C
 		return repository.findAfterByFaculty(fid, LocalDate.now().minusMonths(6));
 	}
 
+	@Override
+	public List<CourseOffering> findRegisteredByStudent(Integer sid) {
+		return repository.findAfterByStudent(sid, LocalDate.now().minusMonths(6));
+	}
+
+	@Override
+	public List<CourseOffering> findNotRegisteredByStudent(Integer sid) {
+		return repository.findNotRegisteredByStudent(sid, LocalDate.now());
+	}
 }

@@ -1,9 +1,7 @@
 package edu.ea.project.team8.repository;
 
-import edu.ea.project.team8.domain.Course;
 import edu.ea.project.team8.domain.CourseOffering;
 import edu.ea.project.team8.domain.Student;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 @Repository("courseOfferingRepository")
 @Transactional(propagation=Propagation.MANDATORY)
@@ -30,6 +27,9 @@ public interface CourseOfferingRepository extends JpaRepository<CourseOffering, 
 
 	@Query("SELECT cof from CourseOffering cof join cof.registrations rg WHERE rg.student.id = :sid and cof.endDate > :after")
 	CourseOffering findAfterByStudent(@Param("sid") Integer sid,@Param("after") LocalDate after);
+
+	@Query("SELECT cof from CourseOffering cof join cof.registrations rg WHERE rg.student.id <> :sid and cof.endDate > :after")
+	List<CourseOffering> findNotRegisteredByStudent(@Param("sid") Integer sid, @Param("after") LocalDate after);
 
 	@Query("SELECT rg.st from CourseOffering cof join cof.registration rg")
 	List<Student> getStudents(@Param("coid") Integer coid);
