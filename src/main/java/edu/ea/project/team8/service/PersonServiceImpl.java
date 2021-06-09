@@ -22,9 +22,9 @@ import edu.ea.project.team8.domain.Person;
 @Transactional(propagation=Propagation.REQUIRED)
 public class PersonServiceImpl extends BaseServiceImpl<Person, Person, Integer> implements PersonService {
 
-	@Qualifier("personRepository")
-	@Autowired
-	private PersonRepository personRepository;
+//	@Qualifier("personRepository")
+//	@Autowired
+//	private PersonRepository personRepository;
 
 	@Override
 	protected List<Person> convertToResponseList(List<Person> list) {
@@ -34,12 +34,12 @@ public class PersonServiceImpl extends BaseServiceImpl<Person, Person, Integer> 
 	@Override
 	public void addPerson(Person person) {
 		person.setPasswordHash(new BCryptPasswordEncoder().encode(person.getPasswordHash()));
-		personRepository.save(person);
+		super.add(person);
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<Person> person = personRepository.findByUsername(username);
+		Optional<Person> person = ((PersonRepository) baseRepository).findByUsername(username);
 		return new CustomUserDetails(person.orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username)));
 	}
 }

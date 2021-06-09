@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @Service("facultyService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class FacultyServiceImpl extends BaseServiceImpl<FacultyDTO, Faculty, Integer> {
+public class FacultyServiceImpl extends BaseServiceImpl<FacultyDTO, Faculty, Integer> implements FacultyService{
 
     @Override
     protected List<FacultyDTO> convertToResponseList(List<Faculty> list) {

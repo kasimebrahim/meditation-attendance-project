@@ -16,7 +16,7 @@ import edu.ea.project.team8.domain.CourseOffering;
 
 @Service("courseOfferingService")
 @Transactional(propagation=Propagation.REQUIRED)
-public class CourseOfferingServiceImpl extends BaseServiceImpl<CourseOffering, CourseOffering, Integer> {
+public class CourseOfferingServiceImpl extends BaseServiceImpl<CourseOffering, CourseOffering, Integer> implements CourseOfferingService{
 
 	@Override
 	protected List<CourseOffering> convertToResponseList(List<CourseOffering> list) {

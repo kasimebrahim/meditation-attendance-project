@@ -14,7 +14,7 @@ import edu.ea.project.team8.domain.Registration;
 
 @Service("registrationService")
 @Transactional(propagation=Propagation.REQUIRED)
-public class RegistrationServiceImpl extends BaseServiceImpl<Registration, Registration, Integer> {
+public class RegistrationServiceImpl extends BaseServiceImpl<Registration, Registration, Integer> implements RegistrationService{
 
 	@Override
 	protected List<Registration> convertToResponseList(List<Registration> list) {

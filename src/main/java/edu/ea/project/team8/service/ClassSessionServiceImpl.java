@@ -14,7 +14,7 @@ import edu.ea.project.team8.domain.ClassSession;
 
 @Service("classSessionService")
 @Transactional(propagation=Propagation.REQUIRED)
-public class ClassSessionServiceImpl extends BaseServiceImpl<ClassSession, ClassSession, Integer> {
+public class ClassSessionServiceImpl extends BaseServiceImpl<ClassSession, ClassSession, Integer> implements ClassSessionService {
 	@Override
 	protected List<ClassSession> convertToResponseList(List<ClassSession> list) {
 		return list;

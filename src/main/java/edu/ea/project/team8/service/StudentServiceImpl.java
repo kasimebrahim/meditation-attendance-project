@@ -16,23 +16,23 @@ import java.util.List;
 @Service("studentService")
 @Transactional(propagation = Propagation.REQUIRED)
 public class StudentServiceImpl extends BaseServiceImpl<Student, Student, Integer> implements StudentService {
-    private final StudentRepository repository;
-
-
-    @Autowired
-    public StudentServiceImpl(@Qualifier("studentRepository") StudentRepository repository) {
-        this.repository = repository;
-    }
+//    private final StudentRepository repository;
+//
+//
+//    @Autowired
+//    public StudentServiceImpl(@Qualifier("studentRepository") StudentRepository repository) {
+//        this.repository = repository;
+//    }
 
 
     @Override
     public List<Course> findAllCoursesTaking(Integer id) {
-        return repository.findAllCoursesTaking(id, LocalDate.now());
+        return ((StudentRepository)baseRepository).findAllCoursesTaking(id, LocalDate.now());
     }
 
     @Override
     public List<Course> findAllCoursesTaken(Integer id) {
-        return repository.findAllCoursesTakenBefore(id, LocalDate.now());
+        return ((StudentRepository)baseRepository).findAllCoursesTakenBefore(id, LocalDate.now());
     }
 
     @Override

@@ -15,7 +15,7 @@ import edu.ea.project.team8.domain.Student;
 
 @Service("barCodeRecordService")
 @Transactional(propagation=Propagation.REQUIRED)
-public class BarCodeRecordServiceImpl extends BaseServiceImpl<BarCodeRecord, BarCodeRecord, Integer> {
+public class BarCodeRecordServiceImpl extends BaseServiceImpl<BarCodeRecord, BarCodeRecord, Integer> implements BarCodeRecordService{
 
 	@Override
 	protected List<BarCodeRecord> convertToResponseList(List<BarCodeRecord> list) {

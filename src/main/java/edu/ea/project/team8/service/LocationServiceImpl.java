@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service("locationService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class LocationServiceImpl extends BaseServiceImpl<Location, Location, Integer> {
+public class LocationServiceImpl extends BaseServiceImpl<Location, Location, Integer> implements LocationService {
 
     @Override
     protected List<Location> convertToResponseList(List<Location> list) {

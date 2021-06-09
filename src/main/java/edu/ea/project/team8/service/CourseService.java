@@ -1,4 +1,7 @@
 package edu.ea.project.team8.service;
 
-public interface CourseService {
+import edu.ea.project.team8.common.service.BaseService;
+import edu.ea.project.team8.domain.Course;
+
+public interface CourseService extends BaseService<Course, Course, Integer> {
 }

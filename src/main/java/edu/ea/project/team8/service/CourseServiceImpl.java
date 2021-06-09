@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service("courseService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class CourseServiceImpl extends BaseServiceImpl<Course, Course, Integer> {
+public class CourseServiceImpl extends BaseServiceImpl<Course, Course, Integer> implements CourseService{
 
     @Override
     protected List<Course> convertToResponseList(List<Course> list) {
