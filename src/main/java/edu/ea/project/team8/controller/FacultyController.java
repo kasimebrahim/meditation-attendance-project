@@ -18,15 +18,6 @@ import java.util.List;
 public class FacultyController extends BaseController<FacultyDTO, Faculty, Integer> {
     @Autowired
     CourseOfferingService courseOfferingService;
-    @Autowired
-    AttendanceService attendanceService;
-
-    @RequestMapping("")
-    public List<CourseOffering> getAllOfferingsAfter(@PathVariable("id") Integer fid, LocalDate date) {
-        if (date == null)
-            return courseOfferingService.findAllByFaculty(fid);
-        return courseOfferingService.findAllOfferingsByFacultyAfter(fid, date);
-    }
 
     @RequestMapping(value = "/{id}/offerings", method = RequestMethod.GET)
     public List<CourseOffering> getOfferings(@PathVariable("id") Integer fid) {
