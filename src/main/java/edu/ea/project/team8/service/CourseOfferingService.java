@@ -5,6 +5,7 @@ import java.util.List;
 
 import edu.ea.project.team8.common.service.BaseService;
 import edu.ea.project.team8.domain.CourseOffering;
+import edu.ea.project.team8.domain.Student;
 
 public interface CourseOfferingService extends BaseService<CourseOffering, CourseOffering, Integer> {
 	List<CourseOffering> findByCourse(Integer cid);
@@ -12,4 +13,5 @@ public interface CourseOfferingService extends BaseService<CourseOffering, Cours
 	List<CourseOffering> findAllOfferingsByFacultyAfter(Integer fid, LocalDate date);
 	List<CourseOffering> findAllByFaculty(Integer fid);
 	CourseOffering findCurrentOfferingsByStudent(Integer sid);
+	List<Student> getStudents(Integer coid);
 }

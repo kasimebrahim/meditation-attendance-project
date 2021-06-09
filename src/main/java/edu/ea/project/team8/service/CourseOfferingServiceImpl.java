@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import edu.ea.project.team8.common.service.BaseServiceImpl;
+import edu.ea.project.team8.domain.Student;
 import edu.ea.project.team8.dto.CourseOfferingDTO;
 import edu.ea.project.team8.repository.CourseOfferingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,11 @@ public class CourseOfferingServiceImpl extends BaseServiceImpl<CourseOffering, C
 	@Override
 	public CourseOffering findCurrentOfferingsByStudent(Integer sid) {
 		return repository.findAfterByStudent(sid, LocalDate.now());
+	}
+
+	@Override
+	public List<Student> getStudents(Integer coid) {
+		return repository.getStudents(coid);
 	}
 
 }
