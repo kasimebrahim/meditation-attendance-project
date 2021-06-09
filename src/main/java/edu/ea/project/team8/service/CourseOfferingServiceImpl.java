@@ -32,4 +32,9 @@ public class CourseOfferingServiceImpl implements CourseOfferingService {
 		repository.save(offering);
 	}
 
+	@Override
+	public List<CourseOffering> findByCourse(Integer cid) {
+		return repository.findByCourse(cid);
+	}
+
 }
