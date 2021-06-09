@@ -33,18 +33,4 @@ public class FacultyController extends BaseController<FacultyDTO, Faculty, Integ
         return courseOfferingService.findCurrentOfferingsByFaculty(fid);
     }
 
-    @RequestMapping(value = "/id/offerings/{coid}/attendances", method = RequestMethod.GET)
-    public List<Attendance> getAttendanceByOffering(@PathVariable("coid") Integer coid) {
-        return attendanceService.findByCourseOffering(coid);
-    }
-
-    @RequestMapping(value = "/id/offerings/{coid}/attendances/student/{sid}", method = RequestMethod.GET)
-    public List<Attendance> getAttendanceByOffering(@PathVariable("sid") Integer sid, @PathVariable("coid") Integer coid) {
-        return attendanceService.findOfStudentByCourseOffering(sid, coid);
-    }
-
-    @RequestMapping(value = "/id/offerings/coid/attendances/", method = RequestMethod.PUT)
-    public Attendance updateAttendance(@RequestBody Attendance attendance) {
-        return attendanceService.updateAttendance(new Attendance());
-    }
 }
