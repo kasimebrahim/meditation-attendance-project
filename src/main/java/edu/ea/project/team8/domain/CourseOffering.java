@@ -53,7 +53,7 @@ public class CourseOffering implements Serializable {
 	private Faculty faculty;
 
 	@ToString.Exclude
-	@OneToMany(mappedBy="offering", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="offering", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ClassSession> sessions = new ArrayList<>();
 
 	CourseOffering(Course course, String period, LocalDate beginDate,
