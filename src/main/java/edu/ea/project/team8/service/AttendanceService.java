@@ -5,7 +5,9 @@ import edu.ea.project.team8.domain.Attendance;
 import java.util.List;
 
 public interface AttendanceService {
-	public List<Attendance> findOf(Integer personiId);
-	public List<Attendance> findByCourse(Integer courseId);
-	public List<Attendance> findOfByCourse(Integer personId, Integer courseId);
+	List<Attendance> findOf(Integer personiId);
+	List<Attendance> findByCourse(Integer courseId);
+	List<Attendance> findOfByCourse(Integer personId, Integer courseId);
+	List<Attendance> findByCourseOffering(Integer coid);
+	List<Attendance> findOfStudentByCourseOffering(Integer id, Integer id1);
 }
