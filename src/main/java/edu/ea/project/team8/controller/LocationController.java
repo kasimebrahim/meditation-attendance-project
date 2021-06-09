@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/locations")
-@CrossOrigin
+@CrossOrigin("*")
 public class LocationController extends BaseController<Location, Location, Integer> {
 }

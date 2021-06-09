@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/roles")
-@CrossOrigin
+@CrossOrigin("*")
 public class RoleController extends BaseController<Role, Role, Integer> {
 }

@@ -21,7 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/faculties")
-@CrossOrigin
+@CrossOrigin("*")
 public class FacultyController extends BaseController<FacultyDTO, Faculty, Integer> {
 	@Autowired
 	CourseOfferingService courseOfferingService;

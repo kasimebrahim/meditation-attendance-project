@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/courseofferings")
-@CrossOrigin
+@CrossOrigin("*")
 public class CourseOfferingController extends BaseController<CourseOffering, CourseOffering, Integer> {
 }
