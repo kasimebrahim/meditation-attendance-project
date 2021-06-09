@@ -35,4 +35,9 @@ public class StudentServiceImpl extends BaseServiceImpl<Student, Integer> implem
         return repository.findAllCoursesTakenBefore(id, LocalDate.now());
     }
 
+	@Override
+	public Student findByUsername(String name) {
+		return repository.findByUsername(name);
+	}
+
 }

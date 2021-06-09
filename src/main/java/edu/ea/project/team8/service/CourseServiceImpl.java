@@ -11,4 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation = Propagation.REQUIRED)
 public class CourseServiceImpl extends BaseServiceImpl<Course, Integer> implements CourseService {
 
+	@Override
+	public Course findByCode(String code) {
+		return repository.findByCode(code);
+	}
+
 }

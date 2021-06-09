@@ -10,4 +10,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation=Propagation.MANDATORY)
 public interface CourseRepository extends BaseRepository<Course, Integer> {
 
+	Course findByCode(String code);
 }

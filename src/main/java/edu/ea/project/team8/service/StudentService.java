@@ -8,4 +8,6 @@ import edu.ea.project.team8.domain.Student;
 public interface StudentService {
 	public List<Course> findAllCoursesTaking(Integer id);
 	public List<Course> findAllCoursesTaken(Integer id);
+	public Student addStudent(Student student);
+	public Student findByUsername(String name);
 }
