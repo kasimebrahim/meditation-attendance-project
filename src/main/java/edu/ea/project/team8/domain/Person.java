@@ -26,6 +26,9 @@ public class Person implements Serializable {
     @Column(name = "lastname", columnDefinition = "nvarchar(50)")
     private String lastName;
 
+    @Transient
+    private String fullName;
+
     @Column(name = "emailaddress", columnDefinition = "nvarchar(50)")
     private String emailAddress;
 
@@ -52,5 +55,9 @@ public class Person implements Serializable {
 
     public void addRole(Role role) {
         this.roles.add(role);
+    }
+
+    public String getFullName(){
+        return firstName + " " + lastName;
     }
 }

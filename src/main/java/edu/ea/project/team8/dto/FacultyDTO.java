@@ -21,7 +21,7 @@ public class FacultyDTO extends Person implements Serializable  {
         this.setId(faculty.getId());
         this.setFirstName(faculty.getFirstName());
         this.setLastName(faculty.getLastName());
-        this.setFullName(faculty.getFirstName() + " " + faculty.getLastName());
+        this.setFullName(faculty.getFullName());
         this.setEmailAddress(faculty.getEmailAddress());
         this.setUsername(faculty.getUsername());
         this.setRoles(faculty.getRoles());
