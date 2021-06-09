@@ -17,7 +17,7 @@ public class ClassSession {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
 	private Timeslot timeslot;
 
 	@Column(nullable=false)
@@ -27,7 +27,7 @@ public class ClassSession {
 	@JoinColumn(name = "offerId")
 	private CourseOffering offering;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "locationId")
 	private Location location;
 

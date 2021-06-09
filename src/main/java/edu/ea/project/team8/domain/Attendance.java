@@ -12,6 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Attendance {
 	@Id
+	@GeneratedValue
 	private Integer id;
 
 	@ManyToOne
