@@ -12,6 +12,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import lombok.Data;
+import org.springframework.context.annotation.Bean;
 
 @Data
 @NoArgsConstructor

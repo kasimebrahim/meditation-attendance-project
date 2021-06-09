@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -14,7 +15,7 @@ import javax.persistence.Entity;
 @ToString(callSuper = true)
 @NoArgsConstructor
 @Entity
-public class Student extends Person {
+public class Student extends Person implements Serializable {
 
 	@Column(name="personid", columnDefinition = "char(11)")
 	private String studentId;

@@ -6,9 +6,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Service("locationService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class LocationServiceImpl extends BaseServiceImpl<Location, Integer> implements LocationService {
+public class LocationServiceImpl extends BaseServiceImpl<Location, Location, Integer> {
 
+    @Override
+    protected List<Location> convertToResponseList(List<Location> list) {
+        return list;
+    }
 }

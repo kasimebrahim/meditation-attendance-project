@@ -12,6 +12,10 @@ import java.util.List;
 
 @Service("roleService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class RoleServiceImpl extends BaseServiceImpl<Role, Integer> implements RoleService {
+public class RoleServiceImpl extends BaseServiceImpl<Role, Role, Integer> implements RoleService {
 
+    @Override
+    protected List<Role> convertToResponseList(List<Role> list) {
+        return list;
+    }
 }

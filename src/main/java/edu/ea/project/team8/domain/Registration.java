@@ -1,5 +1,6 @@
 package edu.ea.project.team8.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-public class Registration {
+public class Registration implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

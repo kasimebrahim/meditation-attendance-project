@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/roles")
 @CrossOrigin
-public class RoleController extends BaseController<Role, Integer> {
+public class RoleController extends BaseController<Role, Role, Integer> {
 }

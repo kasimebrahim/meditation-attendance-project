@@ -6,9 +6,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Service("timeslotService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class TimeslotServiceImpl extends BaseServiceImpl<Timeslot, Integer> implements TimeslotService {
 
+public class TimeslotServiceImpl extends BaseServiceImpl<Timeslot, Timeslot, Integer> implements TimeslotService {
+
+    @Override
+    protected List<Timeslot> convertToResponseList(List<Timeslot> list) {
+        return list;
+    }
 }

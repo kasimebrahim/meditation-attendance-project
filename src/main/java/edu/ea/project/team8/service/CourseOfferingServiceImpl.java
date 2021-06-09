@@ -1,7 +1,10 @@
 package edu.ea.project.team8.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import edu.ea.project.team8.common.service.BaseServiceImpl;
+import edu.ea.project.team8.dto.CourseOfferingDTO;
 import edu.ea.project.team8.repository.CourseOfferingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,23 +16,10 @@ import edu.ea.project.team8.domain.CourseOffering;
 
 @Service("courseOfferingService")
 @Transactional(propagation=Propagation.REQUIRED)
-public class CourseOfferingServiceImpl implements CourseOfferingService {
-
-	private CourseOfferingRepository repository;
-
-	@Autowired
-	public CourseOfferingServiceImpl(CourseOfferingRepository repository) {
-		this.repository = repository;
-	}
+public class CourseOfferingServiceImpl extends BaseServiceImpl<CourseOfferingDTO, CourseOffering, Integer> {
 
 	@Override
-	public List<CourseOffering> findAll() {
-		return repository.findAll();
+	protected List<CourseOfferingDTO> convertToResponseList(List<CourseOffering> list) {
+		return list.stream().map(courseOffering -> new CourseOfferingDTO(courseOffering)).collect(Collectors.toList());
 	}
-
-	@Override
-	public void addCourseOffering(CourseOffering offering) {
-		repository.save(offering);
-	}
-
 }

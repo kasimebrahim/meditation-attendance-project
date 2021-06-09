@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service("studentService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class StudentServiceImpl extends BaseServiceImpl<Student, Integer> implements StudentService {
+public class StudentServiceImpl extends BaseServiceImpl<Student, Student, Integer> implements StudentService {
     private final StudentRepository repository;
 
 
@@ -35,4 +35,8 @@ public class StudentServiceImpl extends BaseServiceImpl<Student, Integer> implem
         return repository.findAllCoursesTakenBefore(id, LocalDate.now());
     }
 
+    @Override
+    protected List<Student> convertToResponseList(List<Student> list) {
+        return list;
+    }
 }
