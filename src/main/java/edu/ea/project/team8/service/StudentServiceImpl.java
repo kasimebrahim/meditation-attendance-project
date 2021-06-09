@@ -16,13 +16,13 @@ import java.util.List;
 @Service("studentService")
 @Transactional(propagation = Propagation.REQUIRED)
 public class StudentServiceImpl extends BaseServiceImpl<Student, Student, Integer> implements StudentService {
-//    private final StudentRepository repository;
-//
-//
-//    @Autowired
-//    public StudentServiceImpl(@Qualifier("studentRepository") StudentRepository repository) {
-//        this.repository = repository;
-//    }
+    private final StudentRepository repository;
+
+
+    @Autowired
+    public StudentServiceImpl(@Qualifier("studentRepository") StudentRepository repository) {
+        this.repository = repository;
+    }
 
 
     @Override
