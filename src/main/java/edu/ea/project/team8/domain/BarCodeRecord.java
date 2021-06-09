@@ -20,16 +20,16 @@ public class BarCodeRecord implements Serializable {
 
     private LocalDateTime timeStamp;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "barcodeId")
+    @ManyToOne
+    @JoinColumn(name = "locationId")
     private Location location;
 
     @ManyToOne
     @JoinColumn(name = "studentId")
     private Student student;
 
-    public BarCodeRecord(String barcode, LocalDateTime timeStamp, Location location, Student student) {
-        this.barcode = barcode;
+    public BarCodeRecord(LocalDateTime timeStamp, Location location, Student student) {
+        this.barcode = student.getBarcode();
         this.timeStamp = timeStamp;
         this.location = location;
         this.student = student;

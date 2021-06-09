@@ -9,4 +9,5 @@ import edu.ea.project.team8.domain.Student;
 public interface StudentService extends BaseService<Student, Student, Integer> {
 	public List<Course> findAllCoursesTaking(Integer id);
 	public List<Course> findAllCoursesTaken(Integer id);
+	public Student findByUsername(String name);
 }

@@ -7,13 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@Transactional(propagation = Propagation.REQUIRED)
 public class DataLoader implements CommandLineRunner {
 
     @Qualifier("courseRepository")
@@ -44,6 +48,18 @@ public class DataLoader implements CommandLineRunner {
     @Autowired
     CourseOfferingRepository courseOfferingRepository;
 
+    @Qualifier("classSessionRepository")
+    @Autowired
+    ClassSessionRepository classSessionRepository;
+
+    @Qualifier("registrationRepository")
+    @Autowired
+    RegistrationRepository registrationRepository;
+
+    @Qualifier("attendanceRepository")
+    @Autowired
+    AttendanceRepository attendanceRepository;
+
     @Autowired
     PersonService personService;
 
@@ -57,6 +73,9 @@ public class DataLoader implements CommandLineRunner {
         createFaculties();
         createStudents();
         creatCourseOffering();
+        createRegistrations();
+        createClassSessions();
+        createAttendances();
         createUsers();
 
     }
@@ -81,10 +100,10 @@ public class DataLoader implements CommandLineRunner {
         //  Course course, String period, LocalDate beginDate, LocalDate endDate, int capacity, Faculty faculty
         List<Course> courses = courseRepository.findAll();
         List<Faculty> faculties = facultyRepository.findAll();
-        CourseOffering febOffering = courses.get(0).createOffering("Spring", LocalDate.of(2021, Month.FEBRUARY, 1), LocalDate.of(2021, Month.FEBRUARY, 27), 30, faculties.get(0));
-        CourseOffering aprilOffering = courses.get(1).createOffering("Spring", LocalDate.of(2021, Month.FEBRUARY, 1), LocalDate.of(2021, Month.FEBRUARY, 27), 30, faculties.get(1));
-        CourseOffering mayOffering = courses.get(2).createOffering("Spring", LocalDate.of(2021, Month.FEBRUARY, 1), LocalDate.of(2021, Month.FEBRUARY, 27), 30, faculties.get(2));
-        CourseOffering juneOffering = courses.get(3).createOffering("Spring", LocalDate.of(2021, Month.FEBRUARY, 1), LocalDate.of(2021, Month.FEBRUARY, 27), 30, faculties.get(3));
+        CourseOffering febOffering = courseRepository.findByCode("CS545").createOffering("Spring", LocalDate.of(2021, Month.FEBRUARY, 1), LocalDate.of(2021, Month.FEBRUARY, 27), 30, faculties.get(0));
+        CourseOffering aprilOffering = courseRepository.findByCode("CS525").createOffering("Spring", LocalDate.of(2021, Month.FEBRUARY, 1), LocalDate.of(2021, Month.FEBRUARY, 27), 30, faculties.get(1));
+        CourseOffering mayOffering = courseRepository.findByCode("FOR506").createOffering("Spring", LocalDate.of(2021, Month.FEBRUARY, 1), LocalDate.of(2021, Month.FEBRUARY, 27), 30, faculties.get(2));
+        CourseOffering juneOffering = courseRepository.findByCode("CS544").createOffering("Spring", LocalDate.of(2021, Month.FEBRUARY, 1), LocalDate.of(2021, Month.FEBRUARY, 27), 30, faculties.get(3));
 
         courseOfferingRepository.saveAll(List.of(febOffering, aprilOffering, mayOffering, juneOffering));
     }
@@ -149,4 +168,39 @@ public class DataLoader implements CommandLineRunner {
 
         timeslotRepository.saveAll(List.of(amSession, pmSession));
     }
+
+    private void createRegistrations() {
+        Course ea = courseRepository.findByCode("CS544");
+        CourseOffering cof = courseOfferingRepository.findByCourse(ea.getId()).get(0);
+        Student student = studentRepository.findByUsername("samson");
+        registrationRepository.save(cof.register(LocalDate.now(), student));
+    }
+
+    private void createClassSessions() {
+//        just a temporary hack for now.
+        Location location = locationRepository.findAll().get(0);
+        List<Timeslot> timeslots = timeslotRepository.findAll();
+        courseOfferingRepository.findAll().forEach(cof -> {
+            ClassSession cs1 = cof.createSession(cof.getBeginDate(), location, timeslots.get(0));
+            ClassSession cs2 = cof.createSession(cof.getBeginDate(), location, timeslots.get(1));
+            ClassSession cs3 = cof.createSession(cof.getBeginDate().plusDays(1), location, timeslots.get(0));
+            ClassSession cs4 = cof.createSession(cof.getBeginDate().plusDays(1), location, timeslots.get(1));
+            ClassSession cs5 = cof.createSession(cof.getBeginDate().plusDays(2), location, timeslots.get(0));
+            ClassSession cs6 = cof.createSession(cof.getBeginDate().plusDays(2), location, timeslots.get(1));
+            classSessionRepository.saveAll(List.of(cs1, cs2, cs3, cs4, cs5, cs6));
+        });
+    }
+
+    private void createAttendances() {
+        Student student = studentRepository.findByUsername("samson");
+        Course course = courseRepository.findByCode("CS544");
+        CourseOffering courseOffering = courseOfferingRepository.findByCourse(course.getId()).get(0);
+        List<ClassSession> classSessions = classSessionRepository.findByCourseOfferingId(courseOffering.getId());
+        List<Attendance> attendances = new ArrayList<>();
+        for (int i = 0; i < classSessions.size() / 2; i++) {
+            attendances.add(new Attendance(student, classSessions.get(i)));
+        }
+        attendanceRepository.saveAll(attendances);
+    }
+
 }

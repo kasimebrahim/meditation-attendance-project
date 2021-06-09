@@ -18,7 +18,7 @@ public class ClassSession implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
 	private Timeslot timeslot;
 
 	@Column(nullable=false)
@@ -28,7 +28,7 @@ public class ClassSession implements Serializable {
 	@JoinColumn(name = "offerId")
 	private CourseOffering offering;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "locationId")
 	private Location location;
 
@@ -36,6 +36,13 @@ public class ClassSession implements Serializable {
 		this.date = date;
 		this.offering = offering;
 		this.location = location;
+	}
+
+	ClassSession(LocalDate date, CourseOffering offering, Location location, Timeslot timeslot) {
+		this.date = date;
+		this.offering = offering;
+		this.location = location;
+		this.timeslot = timeslot;
 	}
 
 	public Timeslot addTimeslot(String code, String title, LocalTime startTime, LocalTime endTime) {
