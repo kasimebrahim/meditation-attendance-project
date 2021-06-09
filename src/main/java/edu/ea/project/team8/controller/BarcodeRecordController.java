@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/persons")
+@RequestMapping("/barcodes")
 @CrossOrigin(origins = "*")
 public class BarcodeRecordController extends BaseController<BarCodeRecord, BarCodeRecord, Integer> {
 }
