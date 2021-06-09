@@ -180,6 +180,8 @@ public class DataLoader implements CommandLineRunner {
 //        just a temporary hack for now.
         Location location = locationRepository.findAll().get(0);
         Location location2 = locationRepository.findAll().get(1);
+        Location location3 = locationRepository.findAll().get(2);
+        Location location4 = locationRepository.findAll().get(3);
         List<Timeslot> timeslots = timeslotRepository.findAll();
         courseOfferingRepository.findAll().stream().filter(cof -> cof.getId() == 1).forEach(cof -> {
             ClassSession cs1 = cof.createSession(cof.getBeginDate(), location, timeslots.get(0));
@@ -197,6 +199,24 @@ public class DataLoader implements CommandLineRunner {
             ClassSession cs4 = cof.createSession(cof.getBeginDate().plusDays(1), location2, timeslots.get(1));
             ClassSession cs5 = cof.createSession(cof.getBeginDate().plusDays(2), location2, timeslots.get(0));
             ClassSession cs6 = cof.createSession(cof.getBeginDate().plusDays(2), location2, timeslots.get(1));
+            classSessionRepository.saveAll(List.of(cs1, cs2, cs3, cs4, cs5, cs6));
+        });
+        courseOfferingRepository.findAll().stream().filter(cof -> cof.getId() == 3).forEach(cof -> {
+            ClassSession cs1 = cof.createSession(cof.getBeginDate(), location3, timeslots.get(0));
+            ClassSession cs2 = cof.createSession(cof.getBeginDate(), location3, timeslots.get(1));
+            ClassSession cs3 = cof.createSession(cof.getBeginDate().plusDays(1), location3, timeslots.get(0));
+            ClassSession cs4 = cof.createSession(cof.getBeginDate().plusDays(1), location3, timeslots.get(1));
+            ClassSession cs5 = cof.createSession(cof.getBeginDate().plusDays(2), location3, timeslots.get(0));
+            ClassSession cs6 = cof.createSession(cof.getBeginDate().plusDays(2), location3, timeslots.get(1));
+            classSessionRepository.saveAll(List.of(cs1, cs2, cs3, cs4, cs5, cs6));
+        });
+        courseOfferingRepository.findAll().stream().filter(cof -> cof.getId() == 4).forEach(cof -> {
+            ClassSession cs1 = cof.createSession(cof.getBeginDate(), location4, timeslots.get(0));
+            ClassSession cs2 = cof.createSession(cof.getBeginDate(), location4, timeslots.get(1));
+            ClassSession cs3 = cof.createSession(cof.getBeginDate().plusDays(1), location4, timeslots.get(0));
+            ClassSession cs4 = cof.createSession(cof.getBeginDate().plusDays(1), location4, timeslots.get(1));
+            ClassSession cs5 = cof.createSession(cof.getBeginDate().plusDays(2), location4, timeslots.get(0));
+            ClassSession cs6 = cof.createSession(cof.getBeginDate().plusDays(2), location4, timeslots.get(1));
             classSessionRepository.saveAll(List.of(cs1, cs2, cs3, cs4, cs5, cs6));
         });
     }
