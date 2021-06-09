@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 public class FacultyDTO extends Person implements Serializable  {
 
     private String title;
+    private String fullName;
     private List<CourseOfferingDTO> offering;
 
     public FacultyDTO(Faculty faculty) {
