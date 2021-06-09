@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service("attendanceService")
@@ -98,6 +100,7 @@ public class AttendanceServiceImpl implements AttendanceService{
 			}
 			allAttendances.add(new Attendance(studentRepository.findById(sid).orElseThrow(), cs, false));
 		});
+		allAttendances.sort(Comparator.comparing(Attendance::getClassSession));
 		return allAttendances;
 	}
 }

@@ -103,7 +103,7 @@ public class AttendanceTest {
 		when(studentRepository.findById(student.getId()))
 				.thenReturn(java.util.Optional.of(student));
 		List<Attendance> attendances = service.findOfStudentByCourseOffering(student.getId(), 2);
-		assertThat(new HashSet<Attendance>(attendances)).isEqualTo(new HashSet<Attendance>(Arrays.asList(a1, a2, a3, a4)));
+		assertThat(attendances).isEqualTo(Arrays.asList(a1, a3, a2, a4));
 		System.out.println(attendances.size());
 	}
 
