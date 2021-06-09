@@ -24,4 +24,6 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 
 	@Query("SELECT co.course FROM CourseOffering co join co.registrations rgs WHERE rgs.student.id = :id and co.endDate < :dt")
 	public List<Course> findAllCoursesTakenBefore(@Param("id") Integer id, @Param("dt") LocalDate date);
+
+	Student findByUsername(String name);
 }

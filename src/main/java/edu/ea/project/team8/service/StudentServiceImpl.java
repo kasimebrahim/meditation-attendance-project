@@ -35,6 +35,11 @@ public class StudentServiceImpl extends BaseServiceImpl<Student, Student, Intege
         return ((StudentRepository)baseRepository).findAllCoursesTakenBefore(id, LocalDate.now());
     }
 
+	@Override
+	public Student findByUsername(String name) {
+		return repository.findByUsername(name);
+	}
+
     @Override
     protected List<Student> convertToResponseList(List<Student> list) {
         return list;

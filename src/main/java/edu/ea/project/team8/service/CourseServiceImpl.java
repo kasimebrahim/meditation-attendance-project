@@ -13,6 +13,11 @@ import java.util.List;
 @Transactional(propagation = Propagation.REQUIRED)
 public class CourseServiceImpl extends BaseServiceImpl<Course, Course, Integer> implements CourseService{
 
+	@Override
+	public Course findByCode(String code) {
+		return repository.findByCode(code);
+	}
+
     @Override
     protected List<Course> convertToResponseList(List<Course> list) {
         return list;
