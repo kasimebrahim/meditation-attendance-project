@@ -8,6 +8,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/registrations")
-@CrossOrigin(origins = "*")
 public class RegistrationController extends BaseController<Registration, Registration, Integer> {
 }
