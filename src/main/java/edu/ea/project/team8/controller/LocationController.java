@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/locations")
 @CrossOrigin
-public class LocationController extends BaseController<Location, Integer> {
+public class LocationController extends BaseController<Location, Location, Integer> {
 }

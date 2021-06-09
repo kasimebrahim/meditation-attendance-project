@@ -1,5 +1,6 @@
 package edu.ea.project.team8.domain;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "Timeslot")
-public class Timeslot {
+public class Timeslot implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,6 @@
 package edu.ea.project.team8.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +13,12 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import lombok.Data;
+import org.springframework.context.annotation.Bean;
 
 @Data
 @NoArgsConstructor
 @Entity
-public class CourseOffering {
+public class CourseOffering implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

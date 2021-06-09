@@ -1,6 +1,5 @@
 package edu.ea.project.team8.repository;
 
-import edu.ea.project.team8.common.repository.BaseRepository;
 import edu.ea.project.team8.domain.Course;
 import edu.ea.project.team8.domain.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,7 +14,7 @@ import java.util.List;
 
 @Repository("studentRepository")
 @Transactional(propagation=Propagation.MANDATORY)
-public interface StudentRepository extends BaseRepository<Student, Integer> {
+public interface StudentRepository extends JpaRepository<Student, Integer> {
 
 	@Query("SELECT co.course FROM CourseOffering co join co.registrations rgs WHERE rgs.student.id = :id")
 	public List<Course> findAllCourses(@Param("id") Integer id);

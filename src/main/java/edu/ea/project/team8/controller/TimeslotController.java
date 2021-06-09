@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/timeslots")
 @CrossOrigin
-public class TimeslotController extends BaseController<Timeslot, Integer> {
+public class TimeslotController extends BaseController<Timeslot, Timeslot, Integer> {
 
 }

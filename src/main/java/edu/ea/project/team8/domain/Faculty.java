@@ -1,5 +1,6 @@
 package edu.ea.project.team8.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -20,6 +21,7 @@ public class Faculty extends Person {
 
 	@ToString.Exclude
 	@OneToMany(mappedBy = "faculty", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnore
 	private List<CourseOffering> offering = new ArrayList<>();
 
 	public Faculty(String username, String password, String firstName, String lastName, String emailAddress, String title) {

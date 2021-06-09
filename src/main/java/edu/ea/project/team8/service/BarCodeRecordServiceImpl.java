@@ -2,6 +2,7 @@ package edu.ea.project.team8.service;
 
 import java.util.List;
 
+import edu.ea.project.team8.common.service.BaseServiceImpl;
 import edu.ea.project.team8.repository.BarCodeRecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,23 +15,10 @@ import edu.ea.project.team8.domain.Student;
 
 @Service("barCodeRecordService")
 @Transactional(propagation=Propagation.REQUIRED)
-public class BarCodeRecordServiceImpl implements BarCodeRecordService {
-
-	private BarCodeRecordRepository repository;
-
-	@Autowired
-	public BarCodeRecordServiceImpl(BarCodeRecordRepository repository) {
-		this.repository = repository;
-	}
+public class BarCodeRecordServiceImpl extends BaseServiceImpl<BarCodeRecord, BarCodeRecord, Integer> implements BarCodeRecordService{
 
 	@Override
-	public List<BarCodeRecord> findAll() {
-		return repository.findAll();
+	protected List<BarCodeRecord> convertToResponseList(List<BarCodeRecord> list) {
+		return list;
 	}
-
-	@Override
-	public void addRecord(BarCodeRecord barCodeRecord) {
-		repository.save(barCodeRecord);
-	}
-
 }

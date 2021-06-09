@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/students")
 @CrossOrigin
-public class StudentController extends BaseController<Student, Integer> {
+public class StudentController extends BaseController<Student, Student, Integer> {
 }

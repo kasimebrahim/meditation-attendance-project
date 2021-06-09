@@ -9,18 +9,18 @@ import java.util.List;
 
 @Component
 @CrossOrigin
-public abstract class BaseController<T,I> {
+public abstract class BaseController<R, T,I> {
 
     @Autowired
-    private BaseService<T, I> baseService;
+    private BaseService<R, T, I> baseService;
 
     @GetMapping
-    public List<T> getAll(){
+    public List<R> getAll(){
         return baseService.findAll();
     }
 
     @GetMapping("/{id}")
-    public T getById(@PathVariable("id") I id){
+    public R getById(@PathVariable("id") I id){
         return baseService.findById(id);
     }
 
