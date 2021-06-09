@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.Fetch;
@@ -41,6 +42,7 @@ public class CourseOffering implements Serializable {
 	@JoinColumn(name = "offerid")
 	@ToString.Exclude
 	@Fetch(FetchMode.SUBSELECT)
+	@JsonIgnore
 	private List<Registration> registrations = new ArrayList<>();
 
 	@Column

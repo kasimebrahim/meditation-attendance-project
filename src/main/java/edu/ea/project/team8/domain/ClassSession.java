@@ -6,6 +6,7 @@ import java.time.LocalTime;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -26,6 +27,7 @@ public class ClassSession implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "offerId")
+	@JsonIgnore
 	private CourseOffering offering;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
