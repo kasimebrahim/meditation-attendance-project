@@ -62,4 +62,9 @@ public class CourseOfferingServiceImpl extends BaseServiceImpl<CourseOffering, C
 		return repository.getStudents(coid);
 	}
 
+	@Override
+	public List<CourseOffering> find6MOfferingsByFaculty(Integer fid) {
+		return repository.findAfterByFaculty(fid, LocalDate.now().minusMonths(6));
+	}
+
 }

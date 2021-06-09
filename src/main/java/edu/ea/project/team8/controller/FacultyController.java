@@ -30,7 +30,7 @@ public class FacultyController extends BaseController<FacultyDTO, Faculty, Integ
 
     @RequestMapping(value = "/{id}/offerings", method = RequestMethod.GET)
     public List<CourseOffering> getOfferings(@PathVariable("id") Integer fid) {
-        return courseOfferingService.findCurrentOfferingsByFaculty(fid);
+        return courseOfferingService.find6MOfferingsByFaculty(fid);
     }
 
 }

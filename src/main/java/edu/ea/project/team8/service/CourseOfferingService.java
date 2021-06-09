@@ -14,4 +14,5 @@ public interface CourseOfferingService extends BaseService<CourseOffering, Cours
 	List<CourseOffering> findAllByFaculty(Integer fid);
 	CourseOffering findCurrentOfferingsByStudent(Integer sid);
 	List<Student> getStudents(Integer coid);
+	List<CourseOffering> find6MOfferingsByFaculty(Integer fid);
 }
