@@ -34,12 +34,12 @@ public class StudentController extends BaseController<Student, Student, Integer>
         return attendanceService.findOfStudentByCourseOffering(sid, coid);
     }
 
-    @RequestMapping(value = "/registered/{sid}")
+    @RequestMapping(value = "/{sid}/registered")
     public List<CourseOffering> getRegistedByStudent(@Param("sid") Integer sid) {
         return courseOfferingService.findRegisteredByStudent(sid);
     }
 
-    @RequestMapping(value = "/unregistered/{sid}")
+    @RequestMapping(value = "/{sid}/unregistered")
     public List<CourseOffering> getNotRegisteredByStudent(@Param("sid") Integer sid) {
         return courseOfferingService.findNotRegisteredByStudent(sid);
     }
