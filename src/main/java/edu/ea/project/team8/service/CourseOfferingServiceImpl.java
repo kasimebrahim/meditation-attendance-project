@@ -1,5 +1,6 @@
 package edu.ea.project.team8.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +32,26 @@ public class CourseOfferingServiceImpl extends BaseServiceImpl<CourseOffering, C
 	@Override
 	public List<CourseOffering> findByCourse(Integer cid) {
 		return repository.findByCourse(cid);
+	}
+
+	@Override
+	public List<CourseOffering> findCurrentOfferingsByFaculty(Integer fid) {
+		return repository.findAfterByFaculty(fid, LocalDate.now());
+	}
+
+	@Override
+	public List<CourseOffering> findAllOfferingsByFacultyAfter(Integer fid, LocalDate date) {
+		return repository.findAfterByFaculty(fid, date);
+	}
+
+	@Override
+	public List<CourseOffering> findAllByFaculty(Integer fid) {
+		return repository.findAllByFaculty(fid);
+	}
+
+	@Override
+	public CourseOffering findCurrentOfferingsByStudent(Integer sid) {
+		return repository.findAfterByStudent(sid, LocalDate.now());
 	}
 
 }
