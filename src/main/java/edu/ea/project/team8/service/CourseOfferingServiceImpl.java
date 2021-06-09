@@ -22,4 +22,15 @@ public class CourseOfferingServiceImpl extends BaseServiceImpl<CourseOffering, C
 	protected List<CourseOffering> convertToResponseList(List<CourseOffering> list) {
 		return list;
 	}
+
+	@Override
+	public void addCourseOffering(CourseOffering offering) {
+		repository.save(offering);
+	}
+
+	@Override
+	public List<CourseOffering> findByCourse(Integer cid) {
+		return repository.findByCourse(cid);
+	}
+
 }
