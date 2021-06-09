@@ -10,6 +10,7 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.constraints.Pattern;
 
 @Data
 @ToString(callSuper = true)
@@ -18,6 +19,7 @@ import javax.persistence.Entity;
 public class Student extends Person implements Serializable {
 
 	@Column(name="personid", columnDefinition = "char(11)")
+	@Pattern(regexp = "[A-Za-z0-9]{3}-[A-Za-z0-9]{2}-[A-Za-z0-9]{4}", message = "Invalid Format")
 	private String studentId;
 
 	@Column(name="visastatus", columnDefinition = "nvarchar(50)")

@@ -16,10 +16,10 @@ import edu.ea.project.team8.domain.CourseOffering;
 
 @Service("courseOfferingService")
 @Transactional(propagation=Propagation.REQUIRED)
-public class CourseOfferingServiceImpl extends BaseServiceImpl<CourseOfferingDTO, CourseOffering, Integer> {
+public class CourseOfferingServiceImpl extends BaseServiceImpl<CourseOffering, CourseOffering, Integer> {
 
 	@Override
-	protected List<CourseOfferingDTO> convertToResponseList(List<CourseOffering> list) {
-		return list.stream().map(courseOffering -> new CourseOfferingDTO(courseOffering)).collect(Collectors.toList());
+	protected List<CourseOffering> convertToResponseList(List<CourseOffering> list) {
+		return list;
 	}
 }

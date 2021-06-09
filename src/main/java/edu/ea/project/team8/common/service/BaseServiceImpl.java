@@ -1,7 +1,5 @@
 package edu.ea.project.team8.common.service;
 
-import edu.ea.project.team8.common.mapper.BaseMapper;
-import edu.ea.project.team8.common.repository.BaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
@@ -10,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @Transactional
