@@ -22,6 +22,11 @@ public class CourseOfferingController extends BaseController<CourseOffering, Cou
 	@Autowired
 	CourseOfferingService courseOfferingService;
 
+	@RequestMapping(value = "/{coid}/classsessions/{csid}/attendances", method = RequestMethod.GET)
+	public List<Attendance> getAttendanceByOfferingAndSession(@PathVariable("coid") Integer coid, @PathVariable("csid") Integer csid) {
+		return attendanceService.findByCourseOfferingAndSession(coid, csid);
+	}
+
 	@RequestMapping(value = "/{coid}/attendances", method = RequestMethod.GET)
 	public List<Attendance> getAttendanceByOffering(@PathVariable("coid") Integer coid) {
 		return attendanceService.findByCourseOffering(coid);

@@ -76,6 +76,14 @@ public class AttendanceServiceImpl implements AttendanceService{
 	}
 
 	@Override
+	public List<Attendance> findByCourseOfferingAndSession(Integer coid, Integer csid) {
+		List<Attendance> attendances = attendanceRepository.findByCourseOfferingAndSession(coid, csid);
+		List<Student> students = courseOfferingRepository.getStudents(coid);
+		ClassSession classSession = classSessionRepository.getById(csid);
+		return getCompleteStudentAttendances(attendances, classSession, students);
+	}
+
+	@Override
 	public List<Attendance> findOfStudentByCourseOffering(Integer sid, Integer cofid) {
 		/*
 		 * Find All aAttendances of a student in a course in all course offerings.
@@ -109,6 +117,22 @@ public class AttendanceServiceImpl implements AttendanceService{
 			allAttendances.add(new Attendance(studentRepository.findById(sid).orElseThrow(), cs, false));
 		});
 		allAttendances.sort(Comparator.comparing(Attendance::getClassSession));
+		return allAttendances;
+	}
+
+	private List<Attendance> getCompleteStudentAttendances(List<Attendance> attendances,
+	                                                       ClassSession classSession, List<Student> students) {
+		List<Attendance> allAttendances = new ArrayList<>();
+		students.forEach(stu -> {
+			for (Attendance att : attendances) {
+				if (att.getStudent().equals(stu)) {
+					allAttendances.add(att);
+					return;
+				}
+			}
+			allAttendances.add(new Attendance(stu, classSession, false));
+		});
+		allAttendances.sort(Comparator.comparing(Attendance::getStudent));
 		return allAttendances;
 	}
 
