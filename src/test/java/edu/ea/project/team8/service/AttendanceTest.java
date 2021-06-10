@@ -3,6 +3,7 @@ package edu.ea.project.team8.service;
 import edu.ea.project.team8.domain.*;
 import edu.ea.project.team8.repository.AttendanceRepository;
 import edu.ea.project.team8.repository.ClassSessionRepository;
+import edu.ea.project.team8.repository.CourseOfferingRepository;
 import edu.ea.project.team8.repository.StudentRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -33,6 +34,8 @@ public class AttendanceTest {
 	StudentRepository studentRepository;
 	@Mock
 	ClassSessionRepository classSessionRepository;
+	@Mock
+	CourseOfferingRepository courseOfferingRepository;
 
 	@Test
 	public void getStudentAttendancesTest() {
@@ -65,7 +68,7 @@ public class AttendanceTest {
 		CourseOffering courseOffering = courseOfferingService.findByCourse(course.getId()).get(0);
 		List<Attendance> attendances = attendanceService.findByCourseOffering(courseOffering.getId());
 		System.out.println("Attendances:\n" + attendances);
-		assertThat(attendances.size()).isEqualTo(3);
+		assertThat(attendances.size()).isEqualTo(6);
 	}
 
 	@Test
@@ -80,7 +83,7 @@ public class AttendanceTest {
 
 	@Test
 	public void getCompleteAttendanceTest() {
-		AttendanceService service = new AttendanceServiceImpl(attendanceRepository, studentRepository, classSessionRepository);
+		AttendanceService service = new AttendanceServiceImpl(attendanceRepository, studentRepository, classSessionRepository, courseOfferingRepository);
 		Student student = new Student();
 		student.setId(1);
 		ClassSession cs1 = new ClassSession();
