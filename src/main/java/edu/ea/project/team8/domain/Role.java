@@ -2,7 +2,6 @@ package edu.ea.project.team8.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,17 +10,17 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Entity
 public class Role implements Serializable {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	private String name;
+    private String name;
 
-	@Column(length = 4000)
-	private String description;
+    @Column(length = 4000)
+    private String description;
 
-	public Role(String name, String description) {
-		this.name = name;
-		this.description = description;
-	}
+    public Role(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 }

@@ -13,17 +13,17 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository("studentRepository")
-@Transactional(propagation=Propagation.MANDATORY)
+@Transactional(propagation = Propagation.MANDATORY)
 public interface StudentRepository extends JpaRepository<Student, Integer> {
 
-	@Query("SELECT co.course FROM CourseOffering co join co.registrations rgs WHERE rgs.student.id = :id")
-	public List<Course> findAllCourses(@Param("id") Integer id);
+    @Query("SELECT co.course FROM CourseOffering co join co.registrations rgs WHERE rgs.student.id = :id")
+	List<Course> findAllCourses(@Param("id") Integer id);
 
-	@Query("SELECT co.course FROM CourseOffering co join co.registrations rgs WHERE rgs.student.id = :id and co.endDate > :dt and co.beginDate < :dt")
-	public List<Course> findAllCoursesTaking(@Param("id") Integer id, @Param("dt") LocalDate date);
+    @Query("SELECT co.course FROM CourseOffering co join co.registrations rgs WHERE rgs.student.id = :id and co.endDate > :dt and co.beginDate < :dt")
+	List<Course> findAllCoursesTaking(@Param("id") Integer id, @Param("dt") LocalDate date);
 
-	@Query("SELECT co.course FROM CourseOffering co join co.registrations rgs WHERE rgs.student.id = :id and co.endDate < :dt")
-	public List<Course> findAllCoursesTakenBefore(@Param("id") Integer id, @Param("dt") LocalDate date);
+    @Query("SELECT co.course FROM CourseOffering co join co.registrations rgs WHERE rgs.student.id = :id and co.endDate < :dt")
+	List<Course> findAllCoursesTakenBefore(@Param("id") Integer id, @Param("dt") LocalDate date);
 
-	Student findByUsername(String name);
+    Student findByUsername(String name);
 }

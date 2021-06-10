@@ -2,7 +2,6 @@ package edu.ea.project.team8.dto;
 
 import edu.ea.project.team8.domain.Course;
 import edu.ea.project.team8.domain.CourseOffering;
-import edu.ea.project.team8.domain.Faculty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -26,7 +25,6 @@ public class CourseOfferingDTO implements Serializable {
         beginDate = courseOffering.getBeginDate();
         endDate = courseOffering.getEndDate();
         capacity = courseOffering.getCapacity();
-//        faculty = new F
         registeredStudents = courseOffering.getRegistrations().size();
     }
 }

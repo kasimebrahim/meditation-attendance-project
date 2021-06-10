@@ -6,8 +6,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository("courseRepository")
-@Transactional(propagation=Propagation.MANDATORY)
+@Transactional(propagation = Propagation.MANDATORY)
 public interface CourseRepository extends org.springframework.data.jpa.repository.JpaRepository<Course, Integer> {
 
-	Course findByCode(String code);
+    Course findByCode(String code);
 }

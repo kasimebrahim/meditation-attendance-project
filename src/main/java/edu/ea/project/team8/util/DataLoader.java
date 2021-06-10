@@ -2,8 +2,6 @@ package edu.ea.project.team8.util;
 
 import edu.ea.project.team8.domain.*;
 import edu.ea.project.team8.repository.*;
-import edu.ea.project.team8.service.PersonService;
-import edu.ea.project.team8.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
@@ -95,9 +93,9 @@ public class DataLoader implements CommandLineRunner {
         Student student1 = studentRepository.findByUsername("ghirmay");
         Student student2 = studentRepository.findByUsername("efrem");
         Student student3 = studentRepository.findByUsername("samson");
-        BarCodeRecord bcr1 = new BarCodeRecord(LocalDateTime.of(2021,1,12,22,32,43),location1,student1);
-        BarCodeRecord bcr2 = new BarCodeRecord(LocalDateTime.of(2021,1,13,12,3,4),location2,student2);
-        BarCodeRecord bcr3 = new BarCodeRecord(LocalDateTime.of(2021,1,11,22,52,15),location1,student3);
+        BarCodeRecord bcr1 = new BarCodeRecord(LocalDateTime.of(2021, 1, 12, 22, 32, 43), location1, student1);
+        BarCodeRecord bcr2 = new BarCodeRecord(LocalDateTime.of(2021, 1, 13, 12, 3, 4), location2, student2);
+        BarCodeRecord bcr3 = new BarCodeRecord(LocalDateTime.of(2021, 1, 11, 22, 52, 15), location1, student3);
         barCodeRecordRepository.saveAll(List.of(bcr1, bcr2, bcr3));
 
     }
@@ -134,16 +132,16 @@ public class DataLoader implements CommandLineRunner {
         Student ghirmay = new Student("ghirmay", "ghirmay", "ghirmay", "shinash", "gshinash@miu.edu", "111-11-1112", "F1", "Online", "MSCS", LocalDate.of(2021, Month.JANUARY, 26), "abcd");
         Student efrem = new Student("efrem", "efrem", "efrem", "abrehe", "eabrehe@miu.edu", "111-11-1113", "F1", "Online", "MSCS", LocalDate.of(2021, Month.JANUARY, 26), "abce");
 
-        studentRepository.saveAll(List.of(sam,ghirmay,efrem));
+        studentRepository.saveAll(List.of(sam, ghirmay, efrem));
     }
 
     private void createFaculties() {
         // String firstName, String lastName, String emailAddress, String title
         Faculty payman = new Faculty("payman", "salek", "Payman", "Salek", "psalek@miu.edu", "Associate Professor of Computer Science");
-        Faculty paul = new Faculty( "paul","corazza", "Paul", "Corazza", "pcorazza@miu.edu", "Professor of Computer Science and Mathematics");
-        Faculty greg = new Faculty( "greg", "guthrie","Greg", "Guthrie", "guthrie@miu.edu", "Professor of Computer Science");
-        Faculty dean = new Faculty("muhyieddin","altarawneh","Muhyieddin", "Al-Tarawneh", "maltarawneh@miu.edu", "Assistant Professor of Computer Science");
-        Faculty obinna = new Faculty("obinna", "kalu","Obinna", "Kalu", "okalu@miu.edu", "Assistant Professor of Computer Science");
+        Faculty paul = new Faculty("paul", "corazza", "Paul", "Corazza", "pcorazza@miu.edu", "Professor of Computer Science and Mathematics");
+        Faculty greg = new Faculty("greg", "guthrie", "Greg", "Guthrie", "guthrie@miu.edu", "Professor of Computer Science");
+        Faculty dean = new Faculty("muhyieddin", "altarawneh", "Muhyieddin", "Al-Tarawneh", "maltarawneh@miu.edu", "Assistant Professor of Computer Science");
+        Faculty obinna = new Faculty("obinna", "kalu", "Obinna", "Kalu", "okalu@miu.edu", "Assistant Professor of Computer Science");
 
         facultyRepository.saveAll(List.of(payman, paul, greg, dean, obinna));
     }
