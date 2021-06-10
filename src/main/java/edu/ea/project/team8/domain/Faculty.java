@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,21 +17,21 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Faculty extends Person {
-	
-	@Column(name="title", columnDefinition = "nvarchar(50)")
-	private String title;
 
-	@ToString.Exclude
-	@OneToMany(mappedBy = "faculty", fetch = FetchType.EAGER)
-	@JsonIgnore
-	private List<CourseOffering> offering = new ArrayList<>();
+    @Column(name = "title", columnDefinition = "nvarchar(50)")
+    private String title;
 
-	public Faculty(String username, String password, String firstName, String lastName, String emailAddress, String title) {
-		super(username, new BCryptPasswordEncoder().encode(password), firstName, lastName, emailAddress);
-		this.title = title;
-	}
+    @ToString.Exclude
+    @OneToMany(mappedBy = "faculty", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<CourseOffering> offering = new ArrayList<>();
 
-	void addOffering(CourseOffering offering) {
-		this.offering.add(offering);
-	}
+    public Faculty(String username, String password, String firstName, String lastName, String emailAddress, String title) {
+        super(username, password, firstName, lastName, emailAddress);
+        this.title = title;
+    }
+
+    void addOffering(CourseOffering offering) {
+        this.offering.add(offering);
+    }
 }

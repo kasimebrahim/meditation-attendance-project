@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Component
-@CrossOrigin(origins = "*")
-public abstract class BaseController<R, T,I> {
+@CrossOrigin(methods = {RequestMethod.OPTIONS, RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.HEAD})
+public abstract class BaseController<R, T, I> {
 
     @Autowired
     private BaseService<R, T, I> baseService;

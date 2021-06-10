@@ -1,13 +1,10 @@
 package edu.ea.project.team8.domain;
 
-import javax.persistence.*;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
