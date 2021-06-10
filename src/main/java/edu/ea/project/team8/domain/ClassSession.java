@@ -19,7 +19,7 @@ public class ClassSession implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Timeslot timeslot;
 
 	@Column(nullable=false)
@@ -30,7 +30,7 @@ public class ClassSession implements Serializable {
 	@JsonIgnore
 	private CourseOffering offering;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "locationId")
 	private Location location;
 
