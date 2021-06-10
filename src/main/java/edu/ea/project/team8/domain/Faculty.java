@@ -20,12 +20,12 @@ public class Faculty extends Person {
 	private String title;
 
 	@ToString.Exclude
-	@OneToMany(mappedBy = "faculty", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "faculty", fetch = FetchType.EAGER)
 	@JsonIgnore
 	private List<CourseOffering> offering = new ArrayList<>();
 
 	public Faculty(String username, String password, String firstName, String lastName, String emailAddress, String title) {
-		super(username, new BCryptPasswordEncoder().encode(password), firstName, lastName, emailAddress);
+		super(username, password, firstName, lastName, emailAddress);
 		this.title = title;
 	}
 

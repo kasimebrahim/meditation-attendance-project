@@ -2,13 +2,14 @@ package edu.ea.project.team8.common.controller;
 
 import edu.ea.project.team8.common.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Component
-@CrossOrigin(origins = "*")
+@CrossOrigin(methods = {RequestMethod.OPTIONS, RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.HEAD})
 public abstract class BaseController<R, T,I> {
 
     @Autowired
@@ -35,7 +36,14 @@ public abstract class BaseController<R, T,I> {
     }
 
     @DeleteMapping("{id}")
-    public void deleteById(@PathVariable("id") I id){
-        baseService.deleteById(id);
+    public ResponseEntity<?> deleteById(@PathVariable("id") I id)  {
+
+        try {
+            baseService.deleteById(id);
+        }
+        catch (org.springframework.dao.DataIntegrityViolationException e){
+            return ResponseEntity.badRequest().body("you cannot delete this entity beacuase it has a foreign key relation");
+        }
+        return  ResponseEntity.ok().body("");
     }
 }
