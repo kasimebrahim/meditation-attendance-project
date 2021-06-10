@@ -43,7 +43,7 @@ public class BarCodeRecordServiceImpl extends BaseServiceImpl<BarCodeRecord, Bar
 			attendance.setStudent(barCodeRecord.getStudent());
 			attendance.setBarCodeRecord(savedBarcode);
 			attendance.setClassSession(classSession);
-			attendance.setPresent(false);
+			attendance.setPresent(true);
 			attendanceRepository.save(attendance);
 		}
 		return savedBarcode;
