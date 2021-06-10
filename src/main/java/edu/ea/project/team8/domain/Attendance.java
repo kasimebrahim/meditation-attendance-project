@@ -11,35 +11,35 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Attendance {
-	@Id
-	@GeneratedValue
-	private Integer id;
+    @Id
+    @GeneratedValue
+    private Integer id;
 
-	@ManyToOne
-	private Student student;
+    @ManyToOne
+    private Student student;
 
-	@ManyToOne
-	private ClassSession classSession;
+    @ManyToOne
+    private ClassSession classSession;
 
-	@OneToOne
-	private BarCodeRecord barCodeRecord;
+    @OneToOne
+    private BarCodeRecord barCodeRecord;
 
-	private boolean present=true;
+    private boolean present = true;
 
-	public Attendance(Student student, ClassSession classSession, BarCodeRecord barCodeRecord) {
-		this.student = student;
-		this.classSession = classSession;
-		this.barCodeRecord = barCodeRecord;
-	}
+    public Attendance(Student student, ClassSession classSession, BarCodeRecord barCodeRecord) {
+        this.student = student;
+        this.classSession = classSession;
+        this.barCodeRecord = barCodeRecord;
+    }
 
-	public Attendance(Student student, ClassSession classSession) {
-		this.student = student;
-		this.classSession = classSession;
-	}
+    public Attendance(Student student, ClassSession classSession) {
+        this.student = student;
+        this.classSession = classSession;
+    }
 
-	public Attendance(Student student, ClassSession classSession, boolean present) {
-		this.student = student;
-		this.classSession = classSession;
-		this.present = present;
-	}
+    public Attendance(Student student, ClassSession classSession, boolean present) {
+        this.student = student;
+        this.classSession = classSession;
+        this.present = present;
+    }
 }
