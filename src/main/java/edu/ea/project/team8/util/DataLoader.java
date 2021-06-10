@@ -250,7 +250,7 @@ public class DataLoader implements CommandLineRunner {
         CourseOffering courseOffering = courseOfferingRepository.findByCourse(course.getId()).get(0);
         List<ClassSession> classSessions = classSessionRepository.findByCourseOfferingId(courseOffering.getId());
 
-        Course course1 = courseRepository.findByCode("CS425");
+        Course course1 = courseRepository.findByCode("CS525");
         CourseOffering courseOffering1 = courseOfferingRepository.findByCourse(course1.getId()).get(0);
         List<ClassSession> classSessions1 = classSessionRepository.findByCourseOfferingId(courseOffering1.getId());
         List<Attendance> attendances = new ArrayList<>();
