@@ -11,13 +11,10 @@ import java.util.List;
 
 @Component
 @Transactional
-public abstract class BaseServiceImpl<R extends Serializable, T, I> implements  BaseService<R, T, I> {
+public abstract class BaseServiceImpl<R extends Serializable, T, I> implements BaseService<R, T, I> {
 
     @Autowired
     protected JpaRepository<T, I> baseRepository;
-
-    //    @Autowired
-//    private BaseMapper<T, R> mapper;
 
     @Override
     public List<R> findAll() {
@@ -47,10 +44,4 @@ public abstract class BaseServiceImpl<R extends Serializable, T, I> implements  
 
     protected abstract List<R> convertToResponseList(List<T> list);
 
-//    protected List<R> convertToResponseList(List<T> list){
-//       if (list == null) {
-//           return null;
-//       }
-//       return list.stream().map(mapper::map).collect(Collectors.toList());
-//    }
 }
