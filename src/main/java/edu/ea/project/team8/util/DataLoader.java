@@ -82,7 +82,6 @@ public class DataLoader implements CommandLineRunner {
         createRegistrations();
         createClassSessions();
         createAttendances();
-        createUsers();
         createBarCode();
 
     }
@@ -190,7 +189,7 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void createRegistrations() {
-        Course ea = courseRepository.findByCode("CS544");
+        Course ea = courseRepository.findByCode("CS545");
         CourseOffering cof = courseOfferingRepository.findByCourse(ea.getId()).get(0);
         Student student = studentRepository.findByUsername("samson");
         registrationRepository.save(cof.register(LocalDate.now(), student));
