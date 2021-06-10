@@ -68,7 +68,7 @@ public class AttendanceTest {
 		CourseOffering courseOffering = courseOfferingService.findByCourse(course.getId()).get(0);
 		List<Attendance> attendances = attendanceService.findByCourseOffering(courseOffering.getId());
 		System.out.println("Attendances:\n" + attendances);
-		assertThat(attendances.size()).isEqualTo(6);
+		assertThat(attendances.size()).isEqualTo(12);
 	}
 
 	@Test
