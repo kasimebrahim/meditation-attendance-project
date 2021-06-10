@@ -98,11 +98,13 @@ public class AttendanceServiceImpl implements AttendanceService{
 		/*
 		* Only present attendances are stored. So updating to absent is equal to deleting.
 		* */
-		if (attendance.isPresent())
-			attendanceRepository.save(attendance);
-		else
+		if (attendance.isPresent()) {
+			return attendanceRepository.save(attendance);
+		}
+		else {
 			attendanceRepository.delete(attendance);
-		return attendance;
+			return null;
+		 }
 	}
 
 	private List<Attendance> getCompleteAttendance(Integer sid, List<Attendance> attendances, List<ClassSession> classSessions) {

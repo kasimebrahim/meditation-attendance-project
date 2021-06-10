@@ -42,9 +42,13 @@ public class Attendance implements Serializable {
     }
 
     public Attendance(Student student, ClassSession classSession, Boolean present) {
-        this.student = student;
-        this.classSession = classSession;
+        this(student, classSession);
         this.present = present;
+    }
+
+    public Attendance(Student student, ClassSession classSession, Boolean present, Integer id) {
+        this(student, classSession, present);
+        this.id = id;
     }
 
     public boolean isPresent() {
