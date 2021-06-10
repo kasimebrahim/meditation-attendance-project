@@ -13,4 +13,6 @@ public interface AttendanceService {
 	List<Attendance> findOfStudentByCourseOffering(Integer id, Integer id1);
 
 	Attendance updateAttendance(Attendance attendance);
+
+	List<Attendance> findByCourseOfferingAndSession(Integer coid, Integer csid);
 }

@@ -37,4 +37,6 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Integer>
 	@Query("SELECT cs FROM CourseOffering cof join cof.sessions cs join cof.registrations rg WHERE rg.student.id = :sid and cof.course.id =:cid")
 	List<ClassSession> findSessionsByStudentAndCourse(@Param("sid") Integer sid, @Param("cid") Integer cid);
 
+	@Query("SELECT ac FROM Attendance ac WHERE ac.classSession.id = :csid and ac.classSession.offering.id = :coid")
+	List<Attendance> findByCourseOfferingAndSession(@Param("coid") Integer coid, @Param("csid") Integer csid);
 }
