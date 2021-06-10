@@ -25,7 +25,7 @@ public class Faculty extends Person {
 	private List<CourseOffering> offering = new ArrayList<>();
 
 	public Faculty(String username, String password, String firstName, String lastName, String emailAddress, String title) {
-		super(username, new BCryptPasswordEncoder().encode(password), firstName, lastName, emailAddress);
+		super(username, password, firstName, lastName, emailAddress);
 		this.title = title;
 	}
 

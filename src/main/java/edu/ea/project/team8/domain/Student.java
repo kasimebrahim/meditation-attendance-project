@@ -40,7 +40,7 @@ public class Student extends Person implements Serializable {
 	public Student(String username, String password, String firstName, String lastName, String emailAddress,
 	               String studentId, String visaStatus, String status,
 	               String track, LocalDate entryDate, String barcode) {
-		super(username, new BCryptPasswordEncoder().encode(password), firstName, lastName, emailAddress);
+		super(username, password, firstName, lastName, emailAddress);
 		this.studentId = studentId;
 		this.visaStatus = visaStatus;
 		this.status = status;
