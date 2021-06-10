@@ -31,11 +31,7 @@ public class PersonServiceImpl extends BaseServiceImpl<Person, Person, Integer> 
 		return list;
 	}
 
-	@Override
-	public void addPerson(Person person) {
-		person.setPasswordHash(new BCryptPasswordEncoder().encode(person.getPasswordHash()));
-		super.add(person);
-	}
+
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

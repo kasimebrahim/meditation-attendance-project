@@ -3,6 +3,7 @@ package edu.ea.project.team8.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Person implements Serializable {
+public abstract class Person implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,7 +47,7 @@ public class Person implements Serializable {
 
     public Person(String username, String passwordHash, String firstName, String lastName, String emailAddress) {
         this.username = username;
-        this.passwordHash = passwordHash;
+        this.passwordHash = new BCryptPasswordEncoder().encode(passwordHash);
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;

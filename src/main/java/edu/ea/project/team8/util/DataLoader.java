@@ -3,6 +3,7 @@ package edu.ea.project.team8.util;
 import edu.ea.project.team8.domain.*;
 import edu.ea.project.team8.repository.*;
 import edu.ea.project.team8.service.PersonService;
+import edu.ea.project.team8.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
@@ -60,13 +61,15 @@ public class DataLoader implements CommandLineRunner {
     @Autowired
     AttendanceRepository attendanceRepository;
 
+    @Qualifier("userRepository")
     @Autowired
-    PersonService personService;
+    UserRepository userRepository;
 
     @Override
     public void run(String... args) throws RuntimeException {
 
         createRoles();
+        createUsers();
         createLocations();
         createCourses();
         createTimeslots();
@@ -76,24 +79,21 @@ public class DataLoader implements CommandLineRunner {
         createRegistrations();
         createClassSessions();
         createAttendances();
-        createUsers();
 
     }
 
     private void createUsers() {
         //  String username, String passwordHash, String firstName, String lastName, String emailAddress
         List<Role> roles = roleRepository.findAll();
-        Person admin = new Person("admin", "admin", "Admin", "Admin", "Admin@miu");
+        User admin = new User("admin", "admin", "Admin", "Admin", "Admin@miu", "Admin");
         admin.addRole(roles.get(0));
         System.out.println(admin);
-        personService.addPerson(admin);
-        Person faculty = new Person("faculty", "faculty", "Faculty", "Faculty", "Faculty@miu.edu");
-        faculty.addRole(roles.get(2));
-        faculty.addRole(roles.get(3));
-        personService.addPerson(faculty);
-        Person student = new Person("student", "student", "Student", "Student", "Student@miu.edu");
-        student.addRole(roles.get(1));
-        personService.addPerson(student);
+        userRepository.save(admin);
+        User personnel = new User("personnel", "faculty", "Faculty", "Faculty", "Faculty@miu.edu", "Personnel");
+        personnel.addRole(roles.get(2));
+        personnel.addRole(roles.get(3));
+        userRepository.save(personnel);
+
     }
 
     private void creatCourseOffering() {

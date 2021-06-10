@@ -44,6 +44,6 @@ public abstract class BaseController<R, T, I> {
         catch (org.springframework.dao.DataIntegrityViolationException e){
             return ResponseEntity.badRequest().body("you cannot delete this entity beacuase it has a foreign key relation");
         }
-        return  ResponseEntity.ok().body("Deleted");
+        return  ResponseEntity.ok().body("");
     }
 }

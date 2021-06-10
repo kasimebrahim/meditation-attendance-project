@@ -21,35 +21,12 @@ import java.util.List;
 public class FacultyController extends BaseController<FacultyDTO, Faculty, Integer> {
     @Autowired
     CourseOfferingService courseOfferingService;
-    @Autowired
-    AttendanceService attendanceService;
-
-    @RequestMapping("")
-    public List<CourseOffering> getAllOfferingsAfter(@PathVariable("id") Integer fid, LocalDate date) {
-        if (date == null)
-            return courseOfferingService.findAllByFaculty(fid);
-        return courseOfferingService.findAllOfferingsByFacultyAfter(fid, date);
-    }
 
     @Secured({"ROLE_FACULTY"})
 //    @PreAuthorize("")
     @RequestMapping(value = "/{id}/offerings", method = RequestMethod.GET)
     public List<CourseOffering> getOfferings(@PathVariable("id") Integer fid) {
-        return courseOfferingService.findCurrentOfferingsByFaculty(fid);
+        return courseOfferingService.find6MOfferingsByFaculty(fid);
     }
 
-    @RequestMapping(value = "/id/offerings/{coid}/attendances", method = RequestMethod.GET)
-    public List<Attendance> getAttendanceByOffering(@PathVariable("coid") Integer coid) {
-        return attendanceService.findByCourseOffering(coid);
-    }
-
-    @RequestMapping(value = "/id/offerings/{coid}/attendances/student/{sid}", method = RequestMethod.GET)
-    public List<Attendance> getAttendanceByOffering(@PathVariable("sid") Integer sid, @PathVariable("coid") Integer coid) {
-        return attendanceService.findOfStudentByCourseOffering(sid, coid);
-    }
-
-    @RequestMapping(value = "/id/offerings/coid/attendances/", method = RequestMethod.PUT)
-    public Attendance updateAttendance(@RequestBody Attendance attendance) {
-        return attendanceService.updateAttendance(new Attendance());
-    }
 }
