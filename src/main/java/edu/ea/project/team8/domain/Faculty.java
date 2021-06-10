@@ -20,7 +20,7 @@ public class Faculty extends Person {
 	private String title;
 
 	@ToString.Exclude
-	@OneToMany(mappedBy = "faculty", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "faculty", fetch = FetchType.EAGER)
 	@JsonIgnore
 	private List<CourseOffering> offering = new ArrayList<>();
 
