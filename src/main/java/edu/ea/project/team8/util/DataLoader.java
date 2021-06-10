@@ -200,7 +200,9 @@ public class DataLoader implements CommandLineRunner {
         Course ea = courseRepository.findByCode("CS545");
         CourseOffering cof = courseOfferingRepository.findByCourse(ea.getId()).get(0);
         Student student = studentRepository.findByUsername("samson");
+        Student girmay = studentRepository.findByUsername("ghirmay");
         registrationRepository.save(cof.register(LocalDate.now(), student));
+        registrationRepository.save(cof.register(LocalDate.now(), girmay));
     }
 
     private void createClassSessions() {

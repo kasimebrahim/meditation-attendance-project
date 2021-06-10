@@ -5,12 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Attendance {
+public class Attendance implements Serializable {
     @Id
     @GeneratedValue
     private Integer id;
@@ -24,7 +25,10 @@ public class Attendance {
     @OneToOne
     private BarCodeRecord barCodeRecord;
 
-    private boolean present = true;
+    @Transient
+    private String courseName;
+
+    private Boolean present = true;
 
     public Attendance(Student student, ClassSession classSession, BarCodeRecord barCodeRecord) {
         this.student = student;
@@ -37,9 +41,20 @@ public class Attendance {
         this.classSession = classSession;
     }
 
-    public Attendance(Student student, ClassSession classSession, boolean present) {
+    public Attendance(Student student, ClassSession classSession, Boolean present) {
         this.student = student;
         this.classSession = classSession;
         this.present = present;
+    }
+
+    public boolean isPresent() {
+        return present;
+    }
+
+    public String getCourseName() {
+        if (classSession != null && classSession.getOffering() != null)
+            return classSession.getOffering().getCourse().getName();
+        else
+            return "";
     }
 }
