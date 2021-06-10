@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Service("personService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class PersonServiceImpl extends BaseServiceImpl<Person, Person, Integer> implements PersonService {
+public class PersonServiceImpl extends BasePersonService<Person, Person> implements PersonService {
 
 
     @Override

@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service("studentService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class StudentServiceImpl extends BaseServiceImpl<Student, Student, Integer> implements StudentService {
+public class StudentServiceImpl extends BasePersonService<Student, Student> implements StudentService {
     private final StudentRepository repository;
 
 
