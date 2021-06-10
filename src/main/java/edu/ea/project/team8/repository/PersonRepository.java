@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Repository("personRepository")
-@Transactional(propagation=Propagation.MANDATORY)
+@Transactional(propagation = Propagation.MANDATORY)
 public interface PersonRepository extends JpaRepository<Person, Integer> {
     Optional<Person> findByUsername(String username);
 }

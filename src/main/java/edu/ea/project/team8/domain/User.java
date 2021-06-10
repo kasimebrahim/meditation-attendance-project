@@ -12,7 +12,7 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @Entity
 public class User extends Person {
-    @Column(name="title", columnDefinition = "nvarchar(50)")
+    @Column(name = "title", columnDefinition = "nvarchar(50)")
     private String title;
 
     public User(String username, String passwordHash, String firstName, String lastName, String emailAddress, String title) {

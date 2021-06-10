@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
-public class FacultyDTO extends Person implements Serializable  {
+public class FacultyDTO extends Person implements Serializable {
 
     private String title;
     private String fullName;

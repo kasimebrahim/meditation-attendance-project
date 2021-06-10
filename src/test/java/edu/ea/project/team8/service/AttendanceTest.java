@@ -55,7 +55,7 @@ public class AttendanceTest {
 
 	@Test
 	public void getCourseAttendancesOfStudentTest() {
-		Course course = courseService.findByCode("CS544");
+		Course course = courseService.findByCode("CS545");
 		Student student = studentService.findByUsername("samson");
 		List<Attendance> attendances = attendanceService.findOfByCourse(student.getId(), course.getId());
 		System.out.println("Attendances:\n" + attendances);
@@ -64,7 +64,7 @@ public class AttendanceTest {
 
 	@Test
 	public void getAttendancesByCourseOfferingTest() {
-		Course course = courseService.findByCode("CS544");
+		Course course = courseService.findByCode("CS545");
 		CourseOffering courseOffering = courseOfferingService.findByCourse(course.getId()).get(0);
 		List<Attendance> attendances = attendanceService.findByCourseOffering(courseOffering.getId());
 		System.out.println("Attendances:\n" + attendances);

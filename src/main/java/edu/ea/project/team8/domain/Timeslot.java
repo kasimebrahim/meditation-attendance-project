@@ -1,12 +1,11 @@
 package edu.ea.project.team8.domain;
 
-import java.io.Serializable;
-import java.time.LocalTime;
-
-import javax.persistence.*;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.time.LocalTime;
 
 @Data
 @NoArgsConstructor

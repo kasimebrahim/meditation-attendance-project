@@ -1,41 +1,33 @@
 package edu.ea.project.team8.service;
 
-import java.util.List;
-import java.util.Optional;
-
 import edu.ea.project.team8.common.service.BaseServiceImpl;
 import edu.ea.project.team8.config.security.CustomUserDetails;
+import edu.ea.project.team8.domain.Person;
 import edu.ea.project.team8.repository.PersonRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.ea.project.team8.domain.Person;
+import java.util.List;
+import java.util.Optional;
 
 
 @Service("personService")
-@Transactional(propagation=Propagation.REQUIRED)
+@Transactional(propagation = Propagation.REQUIRED)
 public class PersonServiceImpl extends BaseServiceImpl<Person, Person, Integer> implements PersonService {
 
-//	@Qualifier("personRepository")
-//	@Autowired
-//	private PersonRepository personRepository;
 
-	@Override
-	protected List<Person> convertToResponseList(List<Person> list) {
-		return list;
-	}
+    @Override
+    protected List<Person> convertToResponseList(List<Person> list) {
+        return list;
+    }
 
 
-
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<Person> person = ((PersonRepository) baseRepository).findByUsername(username);
-		return new CustomUserDetails(person.orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username)));
-	}
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<Person> person = ((PersonRepository) baseRepository).findByUsername(username);
+        return new CustomUserDetails(person.orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username)));
+    }
 }
