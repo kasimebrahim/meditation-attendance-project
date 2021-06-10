@@ -126,11 +126,14 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void createStudents() {
+        List<Role> roles = roleRepository.findAll();
         //  String firstName, String lastName, String emailAddress, String studentId, String visaStatus, String status, String track, LocalDate entryDate, String barcode
         Student sam = new Student("samson", "zaid", "Samson Tekleab", "Zaid", "szaid@miu.edu", "111-11-1111", "F1", "Online", "MSCS", LocalDate.of(2021, Month.JANUARY, 26), "abcdefghijklm");
+        sam.addRole(roles.get(2));
         Student ghirmay = new Student("ghirmay", "ghirmay", "ghirmay", "shinash", "gshinash@miu.edu", "111-11-1112", "F1", "Online", "MSCS", LocalDate.of(2021, Month.JANUARY, 26), "abcd");
+        ghirmay.addRole(roles.get(2));
         Student efrem = new Student("efrem", "efrem", "efrem", "abrehe", "eabrehe@miu.edu", "111-11-1113", "F1", "Online", "MSCS", LocalDate.of(2021, Month.JANUARY, 26), "abce");
-
+        efrem.addRole(roles.get(2));
         studentRepository.saveAll(List.of(sam, ghirmay, efrem));
     }
 
@@ -140,10 +143,13 @@ public class DataLoader implements CommandLineRunner {
         Faculty payman = new Faculty("payman", "salek", "Payman", "Salek", "psalek@miu.edu", "Associate Professor of Computer Science");
         payman.addRole(roles.get(2));
         Faculty paul = new Faculty("paul", "corazza", "Paul", "Corazza", "pcorazza@miu.edu", "Professor of Computer Science and Mathematics");
+        paul.addRole(roles.get(2));
         Faculty greg = new Faculty("greg", "guthrie", "Greg", "Guthrie", "guthrie@miu.edu", "Professor of Computer Science");
+        greg.addRole(roles.get(2));
         Faculty dean = new Faculty("muhyieddin", "altarawneh", "Muhyieddin", "Al-Tarawneh", "maltarawneh@miu.edu", "Assistant Professor of Computer Science");
+        dean.addRole(roles.get(2));
         Faculty obinna = new Faculty("obinna", "kalu", "Obinna", "Kalu", "okalu@miu.edu", "Assistant Professor of Computer Science");
-
+        obinna.addRole(roles.get(2));
         facultyRepository.saveAll(List.of(payman, paul, greg, dean, obinna));
     }
 
