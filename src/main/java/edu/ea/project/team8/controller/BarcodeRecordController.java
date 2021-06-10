@@ -4,6 +4,7 @@ import edu.ea.project.team8.common.controller.BaseController;
 import edu.ea.project.team8.domain.BarCodeRecord;
 import edu.ea.project.team8.service.BarCodeRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,6 +16,7 @@ public class BarcodeRecordController extends BaseController<BarCodeRecord, BarCo
 
     @Override
     @PostMapping
+    @Secured({"ROLE_STUDENT"})
     public BarCodeRecord add(@RequestBody BarCodeRecord entity) {
         return barCodeRecordService.createAttendanceWithBarcode(entity);
     }
