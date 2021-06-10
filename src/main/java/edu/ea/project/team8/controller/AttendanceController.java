@@ -16,6 +16,6 @@ public class AttendanceController {
 	@Secured({"ROLE_ADMIN", "ROLE_PERSONNEL"})
 	@RequestMapping(value = "/", method = RequestMethod.PUT)
 	public Attendance updateAttendance(@RequestBody Attendance attendance) {
-		return attendanceService.updateAttendance(new Attendance());
+		return attendanceService.updateAttendance(attendance);
 	}
 }
