@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
 import java.util.ArrayList;
@@ -60,6 +61,10 @@ public class DataLoader implements CommandLineRunner {
     @Autowired
     AttendanceRepository attendanceRepository;
 
+    @Qualifier("barCodeRecordRepository")
+    @Autowired
+    BarCodeRecordRepository barCodeRecordRepository;
+
     @Autowired
     PersonService personService;
 
@@ -77,6 +82,20 @@ public class DataLoader implements CommandLineRunner {
         createClassSessions();
         createAttendances();
         createUsers();
+        createBarCode();
+
+    }
+
+    private void createBarCode() {
+        Location location1 = locationRepository.findByName("Dalby Hall");
+        Location location2 = locationRepository.findByName("Dreier Room 12");
+        Student student1 = studentRepository.findByUsername("ghirmay");
+        Student student2 = studentRepository.findByUsername("efrem");
+        Student student3 = studentRepository.findByUsername("samson");
+        BarCodeRecord bcr1 = new BarCodeRecord(LocalDateTime.of(2021,1,12,22,32,43),location1,student1);
+        BarCodeRecord bcr2 = new BarCodeRecord(LocalDateTime.of(2021,1,13,12,3,4),location2,student2);
+        BarCodeRecord bcr3 = new BarCodeRecord(LocalDateTime.of(2021,1,11,22,52,15),location1,student3);
+        barCodeRecordRepository.saveAll(List.of(bcr1, bcr2, bcr3));
 
     }
 
@@ -111,8 +130,10 @@ public class DataLoader implements CommandLineRunner {
     private void createStudents() {
         //  String firstName, String lastName, String emailAddress, String studentId, String visaStatus, String status, String track, LocalDate entryDate, String barcode
         Student sam = new Student("samson", "zaid", "Samson Tekleab", "Zaid", "szaid@miu.edu", "111-11-1111", "F1", "Online", "MSCS", LocalDate.of(2021, Month.JANUARY, 26), "abcdefghijklm");
+        Student ghirmay = new Student("ghirmay", "ghirmay", "ghirmay", "shinash", "gshinash@miu.edu", "111-11-1112", "F1", "Online", "MSCS", LocalDate.of(2021, Month.JANUARY, 26), "abcd");
+        Student efrem = new Student("efrem", "efrem", "efrem", "abrehe", "eabrehe@miu.edu", "111-11-1113", "F1", "Online", "MSCS", LocalDate.of(2021, Month.JANUARY, 26), "abce");
 
-        studentRepository.saveAll(List.of(sam));
+        studentRepository.saveAll(List.of(sam,ghirmay,efrem));
     }
 
     private void createFaculties() {
@@ -193,14 +214,26 @@ public class DataLoader implements CommandLineRunner {
 
     private void createAttendances() {
         Student student = studentRepository.findByUsername("samson");
+        Student student1 = studentRepository.findByUsername("ghirmay");
+        Student student2 = studentRepository.findByUsername("efrem");
+
         Course course = courseRepository.findByCode("CS544");
         CourseOffering courseOffering = courseOfferingRepository.findByCourse(course.getId()).get(0);
         List<ClassSession> classSessions = classSessionRepository.findByCourseOfferingId(courseOffering.getId());
+
+        Course course1 = courseRepository.findByCode("CS425");
+        CourseOffering courseOffering1 = courseOfferingRepository.findByCourse(course1.getId()).get(0);
+        List<ClassSession> classSessions1 = classSessionRepository.findByCourseOfferingId(courseOffering1.getId());
         List<Attendance> attendances = new ArrayList<>();
+//        List<Attendance> attendances1 = new ArrayList<>();
+//        List<Attendance> attendances2 = new ArrayList<>();
+
         for (int i = 0; i < classSessions.size() / 2; i++) {
             attendances.add(new Attendance(student, classSessions.get(i)));
+            attendances.add(new Attendance(student1, classSessions1.get(i)));
+            attendances.add(new Attendance(student2, classSessions1.get(i)));
         }
+
         attendanceRepository.saveAll(attendances);
     }
-
 }
