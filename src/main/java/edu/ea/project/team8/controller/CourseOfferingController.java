@@ -31,7 +31,7 @@ public class CourseOfferingController extends BaseController<CourseOffering, Cou
 //		return attendanceService.findByCourseOfferingAndSession(coid, csid);
 //	}
 
-	@RequestMapping(value = "/coid/classsessions/{csid}/attendances", method = RequestMethod.GET)
+	@RequestMapping(value = "/{coid}/classsessions/{csid}/attendances", method = RequestMethod.GET)
 	public List<Attendance> getAttendanceByOfferingAndSession(@PathVariable("csid") Integer csid){
 		return registrationService.getAttendances(csid);
 	}
