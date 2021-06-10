@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service("userService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class UserServiceImpl extends BaseServiceImpl<User, User, Integer> implements UserService{
+public class UserServiceImpl extends BasePersonService<User, User> implements UserService{
     @Override
     protected List<User> convertToResponseList(List<User> list) {
         return list;

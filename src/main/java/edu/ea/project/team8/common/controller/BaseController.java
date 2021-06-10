@@ -1,7 +1,9 @@
 package edu.ea.project.team8.common.controller;
 
 import edu.ea.project.team8.common.service.BaseService;
+import edu.ea.project.team8.dto.ErrorDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
@@ -41,9 +43,10 @@ public abstract class BaseController<R, T, I> {
         try {
             baseService.deleteById(id);
         }
-        catch (org.springframework.dao.DataIntegrityViolationException e){
-            return ResponseEntity.badRequest().body("you cannot delete this entity beacuase it has a foreign key relation");
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(new ErrorDTO("you cannot delete this entity beacuase it has a foreign key relation"));
         }
+
         return  ResponseEntity.ok().body("");
     }
 }
