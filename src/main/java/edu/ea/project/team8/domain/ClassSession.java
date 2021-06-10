@@ -27,7 +27,6 @@ public class ClassSession implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "offerId")
-	@JsonIgnore
 	private CourseOffering offering;
 
 	@ManyToOne
