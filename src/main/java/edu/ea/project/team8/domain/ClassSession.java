@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-public class ClassSession implements Serializable {
+public class ClassSession implements Serializable, Comparable<ClassSession>{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,5 +54,10 @@ public class ClassSession implements Serializable {
 
 	public void addTimeslot(Timeslot timeslot) {
 		this.timeslot = timeslot;
+	}
+
+	@Override
+	public int compareTo(ClassSession classSession) {
+		return this.date.compareTo(classSession.date);
 	}
 }
