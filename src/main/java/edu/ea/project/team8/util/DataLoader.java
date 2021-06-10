@@ -135,8 +135,10 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void createFaculties() {
+        List<Role> roles = roleRepository.findAll();
         // String firstName, String lastName, String emailAddress, String title
         Faculty payman = new Faculty("payman", "salek", "Payman", "Salek", "psalek@miu.edu", "Associate Professor of Computer Science");
+        payman.addRole(roles.get(2));
         Faculty paul = new Faculty("paul", "corazza", "Paul", "Corazza", "pcorazza@miu.edu", "Professor of Computer Science and Mathematics");
         Faculty greg = new Faculty("greg", "guthrie", "Greg", "Guthrie", "guthrie@miu.edu", "Professor of Computer Science");
         Faculty dean = new Faculty("muhyieddin", "altarawneh", "Muhyieddin", "Al-Tarawneh", "maltarawneh@miu.edu", "Assistant Professor of Computer Science");
